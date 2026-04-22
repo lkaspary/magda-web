@@ -2,11 +2,15 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   site: 'https://magdakaspary.com',
+
   vite: {
     plugins: [tailwindcss()]
   },
+
   integrations: [
     sitemap({
       i18n: {
@@ -18,6 +22,7 @@ export default defineConfig({
       },
     }),
   ],
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'pt'],
@@ -25,4 +30,6 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+
+  adapter: cloudflare(),
 });
