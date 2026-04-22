@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 export interface Props {
   title: string;
   description?: string;
@@ -21,7 +23,6 @@ const ptURL = canonicalURL.href.replace('/en/', '/pt/');
     <link rel="alternate" hreflang="en" href={enURL} />
     <link rel="alternate" hreflang="pt" href={ptURL} />
     <link rel="alternate" hreflang="x-default" href={enURL} />
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body class="bg-cream text-ink font-sans">
     <slot name="header" />
