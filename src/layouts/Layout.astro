@@ -1,0 +1,33 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  lang: 'en' | 'pt';
+}
+const { title, description = '', lang } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const enURL = canonicalURL.href.replace('/pt/', '/en/');
+const ptURL = canonicalURL.href.replace('/en/', '/pt/');
+---
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="pt" href={ptURL} />
+    <link rel="alternate" hreflang="x-default" href={enURL} />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="bg-cream text-ink font-sans">
+    <slot name="header" />
+    <main>
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

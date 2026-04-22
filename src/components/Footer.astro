@@ -1,0 +1,28 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = `/${lang}`;
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-stone bg-cream mt-24">
+  <div class="max-w-[68rem] mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+      <div>
+        <p class="font-serif text-lg text-ink mb-2">Magda Kaspary</p>
+        <a href="https://interdisciplinarist.com" class="text-sm text-teal hover:underline">{t.footer.hub}</a>
+      </div>
+      <nav class="flex flex-wrap gap-6 text-sm text-ink-muted">
+        <a href={`${base}/about`}    class="hover:text-teal">{t.nav.about}</a>
+        <a href={`${base}/work`}     class="hover:text-teal">{t.nav.work}</a>
+        <a href={`${base}/speaking`} class="hover:text-teal">{t.nav.speaking}</a>
+        <a href={`${base}/writing`}  class="hover:text-teal">{t.nav.writing}</a>
+        <a href={`${base}/contact`}  class="hover:text-teal">{t.nav.contact}</a>
+      </nav>
+    </div>
+    <div class="mt-8 pt-6 border-t border-stone flex justify-between items-center text-xs text-ink-muted">
+      <span>© {year} Magda Kaspary</span>
+      <a href={`${base}/privacy`} class="hover:text-teal">{t.footer.privacy}</a>
+    </div>
+  </div>
+</footer>

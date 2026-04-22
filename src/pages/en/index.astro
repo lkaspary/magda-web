@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="Magda Kaspary" lang="en">
+  <Header slot="header" />
+  <section class="max-w-[42rem] mx-auto px-6 py-24 text-center">
+    <h1 class="font-serif text-5xl text-ink mb-6">Magda Kaspary</h1>
+    <p class="text-lg text-ink-muted mb-10">It takes courage to lead organizations that honor complexity and human connection.</p>
+    <a href="/en/writing" class="bg-teal text-white px-8 py-3 rounded text-sm hover:bg-teal-dark transition-colors">Explore her thinking</a>
+  </section>
+  <Footer slot="footer" />
+</Layout>

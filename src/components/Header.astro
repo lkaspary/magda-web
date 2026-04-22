@@ -1,0 +1,25 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = `/${lang}`;
+---
+<header class="w-full border-b border-stone bg-cream">
+  <div class="max-w-[68rem] mx-auto px-6 py-5 flex items-center justify-between">
+    <a href={base} class="font-serif text-xl text-ink hover:text-teal transition-colors">
+      Magda Kaspary
+    </a>
+    <nav class="hidden md:flex items-center gap-8">
+      <a href={`${base}/about`}    class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.about}</a>
+      <a href={`${base}/work`}     class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.work}</a>
+      <a href={`${base}/speaking`} class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.speaking}</a>
+      <a href={`${base}/writing`}  class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.writing}</a>
+      <a href={`${base}/contact`}  class="text-sm bg-teal text-white px-4 py-2 rounded hover:bg-teal-dark transition-colors">{t.nav.contact}</a>
+      <div class="text-xs text-ink-muted flex items-center gap-1">
+        <a href={Astro.url.pathname.replace(/^\/(en|pt)/, '/en')} class={lang === 'en' ? 'text-teal font-medium' : 'hover:text-teal'}>EN</a>
+        <span class="text-stone">|</span>
+        <a href={Astro.url.pathname.replace(/^\/(en|pt)/, '/pt')} class={lang === 'pt' ? 'text-teal font-medium' : 'hover:text-teal'}>PT</a>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,5 @@
+---
+const acceptLang = Astro.request.headers.get('accept-language') || '';
+const prefersPt = acceptLang.toLowerCase().startsWith('pt');
+return Astro.redirect(prefersPt ? '/pt/' : '/en/');
+---
