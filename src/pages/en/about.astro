@@ -5,9 +5,138 @@ import Footer from '../../components/Footer.astro';
 ---
 <Layout title="About — Magda Kaspary" lang="en">
   <Header slot="header" />
-  <section class="max-w-[42rem] mx-auto px-6 py-24">
-    <h1 class="font-serif text-5xl text-ink mb-6">About</h1>
-    <p class="text-lg text-ink-muted">Coming soon.</p>
-  </section>
+
+  <div class="max-w-[68rem] mx-auto px-8 pt-16 pb-8 border-b border-stone">
+    <h1 class="font-serif text-[2.8rem] font-normal leading-[1.15] text-ink">About</h1>
+  </div>
+
+  <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-20 items-start">
+
+    <main class="max-w-[42rem]">
+
+      <div class="mb-14">
+        <div class="section-label">In her own words</div>
+        <p class="text-[1.2rem] leading-[1.75] text-ink">I have always believed that work can be one of the most meaningful experiences in a person's life — and that most organizations are leaving that potential almost entirely untouched. That conviction is where everything I do begins.</p>
+      </div>
+
+      <div class="mb-14">
+        <div class="section-label">The full story</div>
+        <div class="bio">
+          <p>My career in HR began with one clear intention: to make the workplace a more humane experience. Not more efficient. More human. That distinction has guided everything.</p>
+          <p>I've had the privilege of working across many countries and cultures — <strong>from Brazil and Latin America, to leading HR for the Latin American operations of a German company, to partnering with global teams across the United States</strong>. Each cultural context taught me something no textbook could: that the way people lead, trust, communicate, and grow is shaped by invisible forces most organizations never stop to examine.</p>
+          <p>What I kept discovering, in every context, was that no single discipline held the full answer. The questions that matter most — <em>Why does this team keep breaking down? What's actually blocking this leader? How do we build an environment where people genuinely bring their best?</em> — live at the intersection of psychology, systems thinking, intercultural intelligence, and coaching. I had to learn to move between those worlds. Eventually, I stopped moving between them and started inhabiting all of them at once.</p>
+          <p>People often tell me I see things they couldn't quite name — a pattern in a team dynamic before it becomes a conflict, the unspoken assumption driving a decision, the emotional current running beneath a strategy conversation. That capacity came from years of <strong>deep curiosity about what moves people</strong>, and from learning to listen not just to what people say, but to what they feel and what they don't yet have words for.</p>
+          <p>I am a <strong>certified coach (ICF Associate Certified Coach)</strong>, a qualified <strong>Intercultural Development Inventory administrator</strong>, and a Senior HR Business Partner at <strong>Amazon Web Services</strong>, where I partner with leaders navigating some of the most complex organizational challenges in the world.</p>
+          <p>Interdisciplinarist is where all of that converges. Not a methodology. A way of seeing — and a permanent invitation to look through more than one lens.</p>
+        </div>
+      </div>
+
+      <blockquote class="pull-quote">"The border between disciplines is not a wall. It's an invitation."</blockquote>
+
+      <div class="mb-14">
+        <div class="section-label">Credentials &amp; affiliations</div>
+        <ul class="credentials-list">
+          <li>Sr. HR Business Partner — <strong>Amazon Web Services</strong></li>
+          <li>Associate Certified Coach (ACC) — <a href="https://coachingfederation.org/" target="_blank"><strong>International Coaching Federation</strong></a></li>
+          <li>SHRM-SCP Senior Certified Professional — <strong>SHRM</strong></li>
+          <li>SPHR — <strong>HRCI</strong></li>
+          <li><a href="https://idiinventory.com/" target="_blank"><strong>Intercultural Development Inventory (IDI)</strong></a> Qualified Administrator</li>
+          <li><a href="https://www.points-of-you.com/" target="_blank"><strong>Points of You®</strong></a> Practitioner</li>
+          <li>Languages: Portuguese (native) · English (fluent) · Spanish (fluent)</li>
+        </ul>
+
+        <div class="mt-10">
+          <div class="section-label">Publications</div>
+          <ul class="credentials-list">
+            <li>Book chapter author — <a href="https://www.amazon.com/Adaptive-Leadership-Economy-Routledge-Research/dp/0367567156" target="_blank"><em>Adaptive Leadership in a Global Economy</em></a> · <strong>Routledge Studies in Leadership Research</strong>, ed. Mohammed Raei &amp; Harriette Thurber Rasmussen</li>
+          </ul>
+        </div>
+      </div>
+
+    </main>
+
+    <aside class="order-first lg:order-last lg:sticky lg:top-20">
+      <img src="/images/magda-books.jpg" alt="Magda Kaspary with books" class="w-full aspect-square object-cover rounded block" />
+      <img src="/images/magda-headshot.jpg" alt="Magda Kaspary portrait" class="w-full aspect-square object-cover object-top rounded block mt-4" />
+      <div class="mt-6 bg-teal-light border border-stone rounded-lg p-6">
+        <p class="text-sm text-ink-muted mb-4 leading-relaxed">Interested in working together or inviting Magda to speak?</p>
+        <a href="/en/contact" class="block bg-teal text-white no-underline px-6 py-2.5 rounded text-[0.8rem] font-medium tracking-[0.06em] uppercase text-center hover:bg-teal-dark transition-colors">Work with Magda</a>
+      </div>
+    </aside>
+
+  </div>
+
   <Footer slot="footer" />
 </Layout>
+
+<style>
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::after {
+    content: '';
+    height: 1px;
+    background: var(--color-stone);
+    width: 3rem;
+  }
+
+  .bio p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--color-ink);
+    margin-bottom: 1.3rem;
+  }
+  .bio strong { color: var(--color-teal); font-weight: 500; }
+  .bio em { font-style: italic; color: var(--color-ink-muted); }
+
+  .pull-quote {
+    font-family: var(--font-serif);
+    font-size: 2.1rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--color-ink);
+    border-left: 4px solid var(--color-teal);
+    padding: 1rem 0 1rem 1.75rem;
+    margin: 3rem 0;
+  }
+
+  .credentials-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+  .credentials-list li {
+    font-size: 0.9rem;
+    color: var(--color-ink);
+    padding-left: 1.25rem;
+    position: relative;
+  }
+  .credentials-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-teal);
+  }
+  .credentials-list a {
+    color: var(--color-teal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-stone);
+    transition: border-color 0.15s;
+  }
+  .credentials-list a:hover { border-color: var(--color-teal); }
+
+  @media (max-width: 768px) {
+    .pull-quote { font-size: 1.5rem; }
+  }
+</style>
