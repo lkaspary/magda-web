@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout *)",
+      "Bash(git push *)",
+      "WebFetch(domain:www.linkedin.com)",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(Start-Sleep -Seconds 5)",
+      "Bash(Invoke-RestMethod -Uri \"http://localhost:4321/api/contact\" -Method POST -ContentType \"application/json\" -Body '{\"name\":\"Test User\",\"email\":\"test@example.com\",\"topic\":\"general\",\"message\":\"This is a test submission from Claude Code to verify the contact form works.\"}')",
+      "Bash(curl -s -X POST http://localhost:4321/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"Test User\",\"email\":\"test@example.com\",\"topic\":\"general\",\"message\":\"Test submission from Claude Code to verify the contact form handler works end-to-end.\"}')",
+      "Bash(npx wrangler *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 ---
-<Layout title="Contact — Magda Kaspary" lang="en">
+<Layout title="Contato — Magda Kaspary" lang="pt">
   <Header slot="header" />
 
   <!-- PAGE HERO -->
@@ -13,7 +13,7 @@ import Footer from '../../components/Footer.astro';
       <img src="/images/nature-fern.jpg" alt="" />
     </div>
     <div class="page-hero-inner max-w-[68rem] mx-auto px-8">
-      <h1 class="font-serif text-[2.8rem] font-normal leading-[1.15] text-ink">Get in Touch</h1>
+      <h1 class="font-serif text-[2.8rem] font-normal leading-[1.15] text-ink">Entre em Contato</h1>
     </div>
   </div>
 
@@ -22,17 +22,17 @@ import Footer from '../../components/Footer.astro';
 
     <!-- LEFT: intro -->
     <div>
-      <p class="text-[1.2rem] leading-[1.8] text-ink mb-8">I'd love to hear from you. Whether you're curious about working together, want to discuss a topic or just want to say hello — this is the right place. Drop me a message and I'll get back to you personally.</p>
+      <p class="text-[1.2rem] leading-[1.8] text-ink mb-8">Adoraria ouvir de você. Se está curiosa sobre trabalhar comigo, quer discutir um tema ou simplesmente quer dizer olá — este é o lugar certo. Me mande uma mensagem e responderei pessoalmente.</p>
 
       <div class="mb-8">
-        <div class="contact-label">Prefer to talk first?</div>
-        <a href="https://cal.com/magda-c-kaspary-mewyzp" target="_blank" rel="noopener" class="btn-calendar">Schedule time with me</a>
+        <div class="contact-label">Prefere conversar primeiro?</div>
+        <a href="https://cal.com/magda-c-kaspary-mewyzp" target="_blank" rel="noopener" class="btn-calendar">Agende um tempo comigo</a>
       </div>
 
       <div class="mb-10">
-        <div class="contact-label">Or write directly</div>
+        <div class="contact-label">Ou escreva diretamente</div>
         <a href="mailto:hello@magdakaspary.com" class="email-link">hello@magdakaspary.com</a>
-        <p class="text-[0.875rem] text-ink-muted mt-2">I respond to all messages within a few business days.</p>
+        <p class="text-[0.875rem] text-ink-muted mt-2">Respondo a todas as mensagens em alguns dias úteis.</p>
       </div>
     </div>
 
@@ -41,28 +41,28 @@ import Footer from '../../components/Footer.astro';
       <div id="form-status"></div>
       <form id="contact-form" class="contact-form">
         <div class="form-group">
-          <label>Your name</label>
+          <label>Seu nome</label>
           <input type="text" name="name" autocomplete="name" required />
         </div>
         <div class="form-group">
-          <label>Your email</label>
+          <label>Seu e-mail</label>
           <input type="email" name="email" autocomplete="email" required />
         </div>
         <div class="form-group">
-          <label>What's this about?</label>
+          <label>Sobre o que é?</label>
           <select name="topic" required>
-            <option value="">Select one…</option>
+            <option value="">Selecione…</option>
             <option value="coaching">Coaching</option>
-            <option value="speaking">Speaking</option>
-            <option value="book">Book a talk</option>
-            <option value="general">General</option>
+            <option value="speaking">Palestras</option>
+            <option value="book">Agendar uma palestra</option>
+            <option value="general">Geral</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Your message</label>
+          <label>Sua mensagem</label>
           <textarea name="message" required></textarea>
         </div>
-        <button type="submit" class="btn-submit">Send message</button>
+        <button type="submit" class="btn-submit">Enviar mensagem</button>
       </form>
     </div>
 
@@ -228,7 +228,7 @@ import Footer from '../../components/Footer.astro';
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-      btn.textContent = 'Sending…';
+      btn.textContent = 'Enviando…';
       btn.disabled = true;
       statusEl.textContent = '';
       statusEl.className = '';
@@ -250,11 +250,11 @@ import Footer from '../../components/Footer.astro';
         if (!res.ok) throw new Error(data.error ?? 'Unknown error');
         form.style.display = 'none';
         statusEl.className = 'success';
-        statusEl.textContent = "Thank you! I'll get back to you personally within a few business days.";
+        statusEl.textContent = 'Obrigada! Responderei pessoalmente em alguns dias úteis.';
       } catch (err) {
         statusEl.className = 'error';
-        statusEl.textContent = 'Something went wrong. Please try again or email me directly.';
-        btn.textContent = 'Send message';
+        statusEl.textContent = 'Algo deu errado. Por favor, tente novamente ou escreva diretamente para mim.';
+        btn.textContent = 'Enviar mensagem';
         btn.disabled = false;
       }
     });

@@ -1,8 +1,11 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
+  output: 'server',
+  adapter: cloudflare(),
   site: 'https://magdakaspary.com',
   vite: {
     plugins: [tailwindcss()]

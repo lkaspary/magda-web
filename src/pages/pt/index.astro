@@ -1,14 +1,280 @@
 ---
+export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 ---
 <Layout title="Magda Kaspary" lang="pt">
   <Header slot="header" />
-  <section class="max-w-[42rem] mx-auto px-6 py-24 text-center">
-    <h1 class="font-serif text-5xl text-ink mb-6">Magda Kaspary</h1>
-    <p class="text-lg text-ink-muted mb-10">É preciso coragem para liderar organizações que honram a complexidade e a conexão humana.</p>
-    <a href="/pt/escrita" class="bg-teal text-white px-8 py-3 rounded text-sm hover:bg-teal-dark transition-colors">Explorar seu pensamento</a>
+
+  <!-- HERO -->
+  <section class="hero border-b border-stone">
+    <div class="hero-text">
+      <h1 class="hero-name">Magda Kaspary</h1>
+      <p class="hero-sub">A verdadeira questão nunca foi o que a tecnologia pode fazer, mas que tipo de organização humana escolhemos construir. Trabalho com líderes prontos para levar essa pergunta a sério.</p>
+      <a href="/pt/contato" class="btn-primary">Trabalhe com Magda</a>
+    </div>
+    <div class="hero-photo">
+      <img src="/images/nature-redwood.jpg" alt="" />
+    </div>
   </section>
+
+  <!-- IDEAS STRIP -->
+  <section class="max-w-[68rem] mx-auto px-8 py-16 border-b border-stone">
+    <p class="section-label">Ideias &amp; Escrita</p>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <h3>A Cultura Que Você Não Projetou</h3>
+        <p>Toda organização tem uma cultura — a questão é se ela foi construída intencionalmente ou por acaso.</p>
+        <span class="idea-link-disabled">Em breve ↗</span>
+      </div>
+      <div class="idea-card">
+        <h3>O Que É de Fato a Inteligência Intercultural</h3>
+        <p>Não se trata de conhecer outras culturas. Trata-se de entender como a sua própria molda tudo o que você enxerga.</p>
+        <span class="idea-link-disabled">Em breve ↗</span>
+      </div>
+      <div class="idea-card">
+        <h3>Por Que os Melhores Líderes Fazem Perguntas Diferentes</h3>
+        <p>Os líderes que geram as mudanças mais significativas não são os que têm as melhores respostas — são os que fazem perguntas melhores.</p>
+        <span class="idea-link-disabled">Em breve ↗</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE-COLUMN PANEL -->
+  <section class="bg-teal-light border-t border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div>
+        <div class="panel-icon">✍️</div>
+        <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Escreve</h3>
+        <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Ensaios na interseção de psicologia, pensamento sistêmico e vida organizacional — para líderes que querem pensar com mais clareza.</p>
+        <a href="/pt/escrita" class="panel-link">Leia os ensaios →</a>
+      </div>
+      <div>
+        <div class="panel-icon">🎤</div>
+        <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Palestras</h3>
+        <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Palestras e workshops sobre inteligência intercultural, liderança e a construção de organizações que honram a complexidade humana.</p>
+        <a href="/pt/palestras" class="panel-link">Agende uma palestra →</a>
+      </div>
+      <div>
+        <div class="panel-icon">🤝</div>
+        <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Trabalha com Pessoas</h3>
+        <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Coaching e trabalho consultivo com líderes navegando as perguntas mais difíceis de suas organizações — as humanas.</p>
+        <a href="/pt/trabalho" class="panel-link">Trabalhe com Magda →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT TEASER -->
+  <section class="max-w-[68rem] mx-auto px-8 py-20 border-b border-stone grid grid-cols-1 md:grid-cols-[1fr_340px] gap-20 items-center">
+    <div>
+      <p class="section-label">Sobre Magda</p>
+      <p class="about-quote">"A fronteira entre as disciplinas não é um muro. É um convite."</p>
+      <p class="text-[0.95rem] text-ink-muted leading-[1.75] mb-8">Minha carreira em RH começou com uma intenção clara: tornar o ambiente de trabalho uma experiência mais humana. Ao longo dos anos — trabalhando no Brasil, na América Latina, na Europa e nos Estados Unidos — fui descobrindo que nenhuma disciplina isolada tinha a resposta completa. As perguntas que mais importam vivem na interseção de psicologia, pensamento sistêmico e inteligência intercultural. Precisei aprender a me mover entre esses mundos. Com o tempo, parei de me mover entre eles e comecei a habitá-los todos ao mesmo tempo.</p>
+      <a href="/pt/sobre" class="btn-outline">Leia a história completa →</a>
+    </div>
+    <div class="rounded overflow-hidden">
+      <img src="/images/magda-books.jpg" alt="Magda Kaspary — pensadora interdisciplinar, coach e líder de RH" class="w-full block object-cover rounded" />
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="bg-teal">
+    <div class="newsletter-inner max-w-[68rem] mx-auto px-8">
+      <div>
+        <h2 class="font-serif text-[2rem] font-light text-white mb-2">Pensamento entre disciplinas, na sua caixa de entrada.</h2>
+        <p class="text-[0.95rem] leading-[1.6] max-w-[38rem]" style="color: rgba(255,255,255,0.75)">Ensaios sobre liderança, cultura e a arte de construir organizações que são ao mesmo tempo de alta performance e profundamente humanas — algumas vezes por mês.</p>
+      </div>
+      <div class="newsletter-embed">
+        <script is:inline async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="34365e7e-c1f7-471a-9788-1eceb366c708"></script>
+      </div>
+    </div>
+  </section>
+
   <Footer slot="footer" />
 </Layout>
+
+<style>
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 38%;
+    min-height: 80vh;
+  }
+  .hero-text {
+    padding: 6rem 3.5rem 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 52rem;
+    margin-left: auto;
+  }
+  .hero-photo {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 30% 20%;
+    display: block;
+    filter: saturate(0.72) hue-rotate(-8deg) brightness(0.96);
+  }
+  .hero-photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to right, var(--color-cream) 0%, rgba(250,247,242,0.6) 25%, rgba(250,247,242,0.1) 55%, transparent 100%);
+  }
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom, var(--color-cream) 0%, transparent 12%, transparent 88%, var(--color-cream) 100%);
+  }
+  .hero-name {
+    font-family: var(--font-serif);
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    color: var(--color-ink);
+    margin-bottom: 2rem;
+  }
+  .hero-sub {
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--color-ink-muted);
+    max-width: 38rem;
+    margin-bottom: 2.5rem;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--color-teal);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 2.2rem;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    transition: background 0.15s;
+    align-self: flex-start;
+  }
+  .btn-primary:hover { background: var(--color-teal-dark); }
+
+  /* IDEAS */
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    margin-bottom: 2rem;
+  }
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .idea-card {
+    border-top: 2px solid var(--color-teal);
+    padding-top: 1.25rem;
+  }
+  .idea-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+    color: var(--color-ink);
+  }
+  .idea-card p {
+    font-size: 0.9rem;
+    color: var(--color-ink-muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .idea-link-disabled {
+    font-size: 0.8rem;
+    color: var(--color-stone);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  /* PANEL */
+  .panel-icon {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .panel-link {
+    font-size: 0.8rem;
+    color: var(--color-teal);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .panel-link:hover { border-color: var(--color-teal); }
+
+  /* ABOUT TEASER */
+  .about-quote {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--color-ink);
+    margin-bottom: 1.5rem;
+  }
+  .btn-outline {
+    display: inline-block;
+    color: var(--color-teal);
+    border: 1.5px solid var(--color-teal);
+    text-decoration: none;
+    padding: 0.65rem 1.75rem;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn-outline:hover { background: var(--color-teal); color: white; }
+
+  /* NEWSLETTER */
+  .newsletter-inner {
+    padding: 4.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .newsletter-embed {
+    flex-shrink: 0;
+    min-width: 280px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-text { padding: 3.5rem 1.5rem 3rem; margin-left: 0; }
+    .hero-photo { display: none; }
+    .ideas-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 768px) {
+    .newsletter-inner { flex-direction: column; align-items: flex-start; }
+    .newsletter-embed { width: 100%; }
+  }
+</style>
