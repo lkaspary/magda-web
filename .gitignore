@@ -17,6 +17,12 @@ pnpm-debug.log*
 .env
 .env.production
 
+# wrangler local state
+.wrangler/
+
+# claude code local settings
+.claude/
+
 # macOS-specific files
 .DS_Store
 
