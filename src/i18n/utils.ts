@@ -10,3 +10,25 @@ export function getLangFromUrl(url: URL): 'en' | 'pt' {
   if (lang === 'pt') return 'pt';
   return 'en';
 }
+
+// Per-language page slugs (PT uses localised URL slugs)
+export const routes = {
+  en: { about: 'about', work: 'work', speaking: 'speaking', writing: 'writing', contact: 'contact' },
+  pt: { about: 'sobre', work: 'trabalho', speaking: 'palestras', writing: 'escrita', contact: 'contato' },
+} as const;
+
+const enToPt: Record<string, string> = {
+  about: 'sobre', work: 'trabalho', speaking: 'palestras', writing: 'escrita', contact: 'contato',
+};
+// Derived reverse map so we maintain a single source of truth
+const ptToEn: Record<string, string> = Object.fromEntries(
+  Object.entries(enToPt).map(([k, v]) => [v, k])
+);
+
+/** Returns the equivalent URL in the target language, translating the page slug. */
+export function getAlternatePath(pathname: string, targetLang: 'en' | 'pt'): string {
+  const parts = pathname.split('/').filter(Boolean); // ['en', 'about'] or ['pt', 'sobre']
+  const slug = parts[1] ?? '';
+  const targetSlug = targetLang === 'pt' ? (enToPt[slug] ?? slug) : (ptToEn[slug] ?? slug);
+  return targetSlug ? `/${targetLang}/${targetSlug}` : `/${targetLang}/`;
+}
