@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { env as cfEnv } from 'cloudflare:workers';
 
 const TOPIC_LABELS: Record<string, string> = {
   coaching: 'Coaching',
@@ -8,7 +9,7 @@ const TOPIC_LABELS: Record<string, string> = {
   general: 'General',
 };
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   let body: Record<string, string>;
   try {
     body = await request.json();
@@ -21,9 +22,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return json({ error: 'All fields are required.' }, 400);
   }
 
-  const apiKey =
-    import.meta.env.RESEND_API_KEY ??
-    (locals as { runtime?: { env?: Record<string, string> } }).runtime?.env?.RESEND_API_KEY;
+  const apiKey = import.meta.env.RESEND_API_KEY ?? (cfEnv as Record<string, string>).RESEND_API_KEY;
 
   if (!apiKey) {
     return json({ error: 'Server misconfiguration: missing API key.' }, 500);
