@@ -15,6 +15,7 @@ const r = routes[lang];
       <a href={`${base}/${r.work}`}     class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.work}</a>
       <a href={`${base}/${r.speaking}`} class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.speaking}</a>
       <a href={`${base}/${r.writing}`}  class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.writing}</a>
+      <a href={`${base}/${r.tools}`}    class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.tools}</a>
       <a href={`${base}/${r.contact}`}  class="text-sm bg-teal text-white px-4 py-2 rounded hover:bg-teal-dark transition-colors">{t.nav.contact}</a>
       <div class="text-xs text-ink-muted flex items-center gap-1">
         <a href={getAlternatePath(Astro.url.pathname, 'en')} class={lang === 'en' ? 'text-teal font-medium' : 'hover:text-teal'}>EN</a>

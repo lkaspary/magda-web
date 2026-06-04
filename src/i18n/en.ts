@@ -1,9 +1,10 @@
 export const ui = {
   nav: {
     about:    'About',
-    work:     'Work',
+    work:     'Work with Me',
     speaking: 'Speaking',
     writing:  'Writing',
+    tools:    'Tools',
     contact:  'Contact',
   },
   hero: {

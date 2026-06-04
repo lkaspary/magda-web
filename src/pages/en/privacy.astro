@@ -1,0 +1,200 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="Privacy Policy | Magda Kaspary" description="Privacy Policy for magdakaspary.com — how we collect, use, and protect your personal data." lang="en">
+  <Header slot="header" />
+
+  <div class="max-w-[68rem] mx-auto px-8 pt-16 pb-8 border-b border-stone">
+    <h1 class="font-serif text-[2.8rem] font-normal leading-[1.15] text-ink">Privacy Policy</h1>
+    <p class="text-sm text-ink-muted mt-3">Last updated: May 2026</p>
+  </div>
+
+  <div class="max-w-[68rem] mx-auto px-8 py-16">
+    <div class="prose-body max-w-[52rem]">
+
+      <section>
+        <h2>Who we are</h2>
+        <p>This website is operated by Magda Kaspary. If you have questions about this policy or how your data is used, you can reach us at: <a href="mailto:hello@magdakaspary.com">hello@magdakaspary.com</a></p>
+      </section>
+
+      <section>
+        <h2>What data we collect</h2>
+        <p>We collect only the data you choose to give us, or that is automatically generated when you use this site.</p>
+        <h3>Data you give us directly:</h3>
+        <ul>
+          <li><strong>Contact form</strong> — your name, email address, and the message you send. We use this to respond to your inquiry. We do not add you to any mailing list without your separate consent.</li>
+          <li><strong>Newsletter signup</strong> — your email address, collected via Beehiiv. Beehiiv processes this data according to their own privacy policy. You can unsubscribe at any time using the link in any newsletter email.</li>
+        </ul>
+        <h3>Data collected automatically:</h3>
+        <ul>
+          <li><strong>Web analytics</strong> — we use Cloudflare Web Analytics to understand how many people visit the site and which pages are most read. Cloudflare does not use cookies or track individual users across sites. No personal data is stored in this process.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>How we use your data</h2>
+        <p>We use your data only for the purpose you gave it:</p>
+        <ul>
+          <li>Contact form submissions → to reply to you.</li>
+          <li>Newsletter email → to send you the Interdisciplinarist newsletter. You can unsubscribe at any time.</li>
+          <li>Analytics → to understand overall site traffic. This data is aggregated and never tied to you personally.</li>
+        </ul>
+        <p>We do not sell, rent, or share your data with third parties for commercial purposes.</p>
+      </section>
+
+      <section>
+        <h2>Third-party services</h2>
+        <p>This site uses the following third-party services, each with their own privacy policy:</p>
+        <table>
+          <thead>
+            <tr><th>Service</th><th>Purpose</th><th>Policy</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Beehiiv</td><td>Newsletter subscriptions</td><td><a href="https://beehiiv.com/privacy" target="_blank" rel="noopener">beehiiv.com/privacy</a></td></tr>
+            <tr><td>Resend</td><td>Delivering contact form emails</td><td><a href="https://resend.com/privacy" target="_blank" rel="noopener">resend.com/privacy</a></td></tr>
+            <tr><td>Cloudflare</td><td>Hosting, CDN, and privacy-friendly analytics</td><td><a href="https://cloudflare.com/privacypolicy" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></td></tr>
+            <tr><td>Cal.com</td><td>Scheduling discovery calls (if you use the booking link)</td><td><a href="https://cal.com/privacy" target="_blank" rel="noopener">cal.com/privacy</a></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Cookies</h2>
+        <p>This site does not use tracking cookies or advertising cookies.</p>
+        <p>Cloudflare Web Analytics is cookieless — it measures traffic without storing any information on your device.</p>
+        <p>If you use the newsletter signup or booking form, those third-party services may set their own cookies, governed by their respective privacy policies.</p>
+      </section>
+
+      <section>
+        <h2>Your rights</h2>
+        <p>Depending on where you live, you may have the right to:</p>
+        <ul>
+          <li><strong>Access</strong> the personal data we hold about you.</li>
+          <li><strong>Correct</strong> inaccurate data.</li>
+          <li><strong>Delete</strong> your data ("right to be forgotten").</li>
+          <li><strong>Object</strong> to or restrict certain processing.</li>
+          <li><strong>Data portability</strong> — receive your data in a usable format.</li>
+        </ul>
+        <p><strong>Brazil (LGPD):</strong> These rights are protected under the Lei Geral de Proteção de Dados (LGPD, Law 13.709/2018). To exercise any of them, contact us at <a href="mailto:hello@magdakaspary.com">hello@magdakaspary.com</a>.</p>
+        <p><strong>EU/Portugal (GDPR):</strong> These rights are protected under the General Data Protection Regulation. To exercise any of them, contact us at <a href="mailto:hello@magdakaspary.com">hello@magdakaspary.com</a>. If you believe your rights have not been respected, you can lodge a complaint with the relevant data protection authority in your country.</p>
+      </section>
+
+      <section>
+        <h2>Data retention</h2>
+        <ul>
+          <li><strong>Contact form submissions</strong> — we keep your message for as long as needed to respond and follow up. We do not retain contact form data beyond 12 months.</li>
+          <li><strong>Newsletter subscriptions</strong> — your email is retained for as long as you remain subscribed. Unsubscribing removes your address from active lists immediately.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Changes to this policy</h2>
+        <p>We may update this policy from time to time. If we make material changes, we will update the "last updated" date at the top of this page. Continued use of the site after changes constitutes acceptance.</p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>For questions about this privacy policy or your personal data:<br /><a href="mailto:hello@magdakaspary.com"><strong>hello@magdakaspary.com</strong></a></p>
+      </section>
+
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .prose-body {
+    color: var(--color-ink);
+  }
+  .prose-body section {
+    margin-bottom: 2.5rem;
+  }
+  .prose-body h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-stone);
+  }
+  .prose-body section:first-child h2 {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .prose-body h3 {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-body p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--color-ink);
+    margin-bottom: 0.85rem;
+  }
+  .prose-body ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .prose-body ul li {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--color-ink);
+    padding-left: 1.25rem;
+    position: relative;
+  }
+  .prose-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-teal);
+  }
+  .prose-body a {
+    color: var(--color-teal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-stone);
+    transition: border-color 0.15s;
+  }
+  .prose-body a:hover { border-color: var(--color-teal); }
+  .prose-body strong { font-weight: 600; color: var(--color-ink); }
+
+  .prose-body table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+  }
+  .prose-body th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-stone);
+  }
+  .prose-body td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid var(--color-stone);
+    color: var(--color-ink);
+    vertical-align: top;
+  }
+  .prose-body tr:last-child td { border-bottom: none; }
+</style>

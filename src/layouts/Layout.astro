@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getAlternatePath } from '../i18n/utils';
 
 export interface Props {
   title: string;
@@ -8,8 +9,9 @@ export interface Props {
 }
 const { title, description = '', lang } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const enURL = canonicalURL.href.replace('/pt/', '/en/');
-const ptURL = canonicalURL.href.replace('/en/', '/pt/');
+const enURL = new URL(getAlternatePath(Astro.url.pathname, 'en'), Astro.site);
+const ptURL = new URL(getAlternatePath(Astro.url.pathname, 'pt'), Astro.site);
+const ogLocale = lang === 'pt' ? 'pt_BR' : 'en_US';
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -23,6 +25,11 @@ const ptURL = canonicalURL.href.replace('/en/', '/pt/');
     <link rel="alternate" hreflang="en" href={enURL} />
     <link rel="alternate" hreflang="pt" href={ptURL} />
     <link rel="alternate" hreflang="x-default" href={enURL} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
   </head>
   <body class="bg-cream text-ink font-sans">
     <slot name="header" />

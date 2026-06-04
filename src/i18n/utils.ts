@@ -13,12 +13,13 @@ export function getLangFromUrl(url: URL): 'en' | 'pt' {
 
 // Per-language page slugs (PT uses localised URL slugs)
 export const routes = {
-  en: { about: 'about', work: 'work', speaking: 'speaking', writing: 'writing', contact: 'contact' },
-  pt: { about: 'sobre', work: 'trabalho', speaking: 'palestras', writing: 'escrita', contact: 'contato' },
+  en: { about: 'about', work: 'work', speaking: 'speaking', writing: 'writing', contact: 'contact', tools: 'tools', privacy: 'privacy' },
+  pt: { about: 'sobre', work: 'trabalho', speaking: 'palestras', writing: 'escrita', contact: 'contato', tools: 'ferramentas', privacy: 'privacidade' },
 } as const;
 
 const enToPt: Record<string, string> = {
   about: 'sobre', work: 'trabalho', speaking: 'palestras', writing: 'escrita', contact: 'contato',
+  tools: 'ferramentas', privacy: 'privacidade',
 };
 // Derived reverse map so we maintain a single source of truth
 const ptToEn: Record<string, string> = Object.fromEntries(
