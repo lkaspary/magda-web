@@ -3,17 +3,32 @@ export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import TagCard from '../../components/TagCard.astro';
+import { lenses } from '../../content/lenses.ts';
+
+const lensDescriptions: Record<string, string> = {
+  'personal-creative': 'Autoavaliações sobre prática criativa, identidade e as partes de você que não cabem num currículo.',
+  'professional': 'Diagnósticos para líderes e equipes — cultura, inteligência intercultural e sistemas organizacionais.',
+};
 ---
-<Layout title="Ferramentas | Magda Kaspary" description="Ferramentas gratuitas para ajudá-lo a examinar sua liderança, sua equipe e a cultura da sua organização. A primeira avaliação está em desenvolvimento." lang="pt">
+<Layout title="Ferramentas | Magda Kaspary" description="Ferramentas gratuitas para ajudá-lo a examinar sua liderança, sua equipe e a cultura da sua organização — divididas entre lentes pessoal e criativa e profissional. A primeira avaliação está em desenvolvimento." lang="pt">
   <Header slot="header" />
 
-  <div class="coming-soon-page">
-    <div class="max-w-[52rem] mx-auto px-8 py-24">
-      <p class="eyebrow">Em Breve</p>
-      <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-8">Ferramentas e Avaliações</h1>
-      <p class="text-[1.15rem] leading-[1.8] text-ink mb-4">Ferramentas gratuitas para ajudá-lo a examinar sua liderança, sua equipe e a cultura da sua organização. A primeira avaliação está em desenvolvimento.</p>
-      <p class="text-[1rem] text-ink-muted leading-[1.75] mb-12">Seja o primeiro a saber quando ela for lançada.</p>
+  <div class="tools-page">
+    <div class="max-w-[68rem] mx-auto px-8 py-20 border-b border-stone">
+      <p class="eyebrow">Ferramentas e Avaliações</p>
+      <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-6">Ferramentas, por dois ângulos</h1>
+      <p class="text-[1.1rem] leading-[1.75] text-ink-muted max-w-[42rem]">Ferramentas gratuitas para ajudá-lo a examinar a si mesmo, sua equipe e a cultura da sua organização — organizadas sob as mesmas duas lentes da sua escrita. A primeira avaliação está em desenvolvimento.</p>
+    </div>
 
+    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-stone">
+      {lenses.map((lens) => (
+        <TagCard name={lens.name.pt} description={lensDescriptions[lens.slug] ?? ''} meta="Em breve" />
+      ))}
+    </div>
+
+    <div class="max-w-[52rem] mx-auto px-8 py-16">
+      <p class="text-[1rem] text-ink-muted leading-[1.75] mb-6">Seja a primeira pessoa a saber quando a primeira ferramenta for lançada.</p>
       <div class="embed-wrapper">
         <iframe
           src="https://embeds.beehiiv.com/34365e7e"
@@ -32,10 +47,6 @@ import Footer from '../../components/Footer.astro';
 </Layout>
 
 <style>
-  .coming-soon-page {
-    min-height: 60vh;
-    border-bottom: 1px solid var(--color-stone);
-  }
   .eyebrow {
     font-size: 0.7rem;
     font-weight: 500;

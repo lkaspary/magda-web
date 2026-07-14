@@ -1,0 +1,42 @@
+---
+export interface Props {
+  name: string;
+  description: string;
+  meta: string;
+  href?: string;
+}
+const { name, description, meta, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+<Tag href={href} class="card tag-card">
+  <h3 class="tag-card-name">{name}</h3>
+  <p class="tag-card-description">{description}</p>
+  <span class="tag-card-meta">{meta}</span>
+</Tag>
+
+<style>
+  .tag-card {
+    display: block;
+    text-decoration: none;
+  }
+  .tag-card-name {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+  .tag-card-description {
+    font-size: 0.9rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .tag-card-meta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+  }
+</style>

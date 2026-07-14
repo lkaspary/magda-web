@@ -3,17 +3,32 @@ export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import TagCard from '../../components/TagCard.astro';
+import { lenses } from '../../content/lenses.ts';
+
+const lensDescriptions: Record<string, string> = {
+  'personal-creative': 'Self-assessments for creative practice, identity, and the parts of you that don’t show up on a résumé.',
+  'professional': 'Diagnostics for leaders and teams — culture, intercultural intelligence, and organizational systems.',
+};
 ---
-<Layout title="Tools & Assessments | Magda Kaspary" description="Free tools to help you examine your leadership, your team, and your organization's culture. The first assessment is in development." lang="en">
+<Layout title="Tools &amp; Assessments | Magda Kaspary" description="Free tools to help you examine your leadership, your team, and your organization's culture — split between personal &amp; creative and professional lenses. The first assessment is in development." lang="en">
   <Header slot="header" />
 
-  <div class="coming-soon-page">
-    <div class="max-w-[52rem] mx-auto px-8 py-24">
-      <p class="eyebrow">Coming Soon</p>
-      <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-8">Tools &amp; Assessments</h1>
-      <p class="text-[1.15rem] leading-[1.8] text-ink mb-4">Free tools to help you examine your leadership, your team, and your organization's culture. The first assessment is in development.</p>
-      <p class="text-[1rem] text-ink-muted leading-[1.75] mb-12">Be the first to know when it launches.</p>
+  <div class="tools-page">
+    <div class="max-w-[68rem] mx-auto px-8 py-20 border-b border-stone">
+      <p class="eyebrow">Tools &amp; Assessments</p>
+      <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-6">Tools, from two angles</h1>
+      <p class="text-[1.1rem] leading-[1.75] text-ink-muted max-w-[42rem]">Free tools to help you examine yourself, your team, and your organization's culture — organized under the same two lenses as her writing. The first assessment is in development.</p>
+    </div>
 
+    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-stone">
+      {lenses.map((lens) => (
+        <TagCard name={lens.name.en} description={lensDescriptions[lens.slug] ?? ''} meta="Coming soon" />
+      ))}
+    </div>
+
+    <div class="max-w-[52rem] mx-auto px-8 py-16">
+      <p class="text-[1rem] text-ink-muted leading-[1.75] mb-6">Be the first to know when the first tool launches.</p>
       <div class="embed-wrapper">
         <iframe
           src="https://embeds.beehiiv.com/ab3b485e"
@@ -32,10 +47,6 @@ import Footer from '../../components/Footer.astro';
 </Layout>
 
 <style>
-  .coming-soon-page {
-    min-height: 60vh;
-    border-bottom: 1px solid var(--color-stone);
-  }
   .eyebrow {
     font-size: 0.7rem;
     font-weight: 500;

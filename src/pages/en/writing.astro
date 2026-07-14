@@ -1,19 +1,71 @@
 ---
 export const prerender = true;
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import TagCard from '../../components/TagCard.astro';
+import EssayCard from '../../components/EssayCard.astro';
+import { lenses } from '../../content/lenses.ts';
+
+const lensDescriptions: Record<string, string> = {
+  'personal-creative': 'Essays on the inner life — creativity, identity, and the questions that don’t fit neatly into a job title.',
+  'professional': 'Leadership, intercultural development, and systems thinking — for people building organizations that honor complexity.',
+};
+
+const allEssays = await getCollection('writingEn');
+
+const sections = lenses.map((lens) => {
+  const essays = allEssays
+    .filter((e) => e.data.tags.includes(lens.slug))
+    .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+  return {
+    ...lens,
+    description: lensDescriptions[lens.slug] ?? '',
+    essays,
+    meta: essays.length === 0 ? 'Coming soon' : `${essays.length} essay${essays.length === 1 ? '' : 's'}`,
+  };
+});
 ---
-<Layout title="Writing | Magda Kaspary" description="Essays on leadership, culture, and the intersection of ideas. New pieces published on Interdisciplinarist — Magda's home for long-form thinking." lang="en">
+<Layout title="Writing | Magda Kaspary" description="Essays at the intersection of psychology, systems thinking, and organizational life — split between her personal &amp; creative work and her professional writing." lang="en">
   <Header slot="header" />
 
-  <div class="coming-soon-page">
-    <div class="max-w-[52rem] mx-auto px-8 py-24">
-      <p class="eyebrow">Coming Soon</p>
-      <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-8">Writing</h1>
-      <p class="text-[1.15rem] leading-[1.8] text-ink mb-4">Essays on leadership, culture, and the intersection of ideas. New pieces published on <a href="https://interdisciplinarist.com" class="teal-link">Interdisciplinarist</a> — Magda's home for long-form thinking. Coming soon here.</p>
-      <p class="text-[1rem] text-ink-muted leading-[1.75] mb-12">Subscribe to be the first to know when new essays are published.</p>
+  <div class="writing-page">
+    <div class="max-w-[68rem] mx-auto px-8 py-20 border-b border-stone">
+      <p class="eyebrow">Writing</p>
+      <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-6">Ideas, from two angles</h1>
+      <p class="text-[1.1rem] leading-[1.75] text-ink-muted max-w-[42rem]">Magda writes across two lenses: the personal and creative, and the professional. Some pieces live here; others are published on <a href="https://interdisciplinarist.com" class="teal-link">Interdisciplinarist</a>, her home for long-form thinking.</p>
+    </div>
 
+    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-stone">
+      {sections.map((s) => (
+        <TagCard name={s.name.en} description={s.description} meta={s.meta} href={`#${s.slug}`} />
+      ))}
+    </div>
+
+    {sections.map((s) => (
+      <section id={s.slug} class="max-w-[68rem] mx-auto px-8 py-16 border-b border-stone">
+        <h2 class="font-serif text-[1.9rem] font-normal text-ink mb-8">{s.name.en}</h2>
+        {s.essays.length === 0 ? (
+          <p class="empty-state">No essays published yet in this lens. Subscribe below to know the moment new ones go live.</p>
+        ) : (
+          <div class="essay-grid">
+            {s.essays.map((entry) => (
+              <EssayCard
+                title={entry.data.title}
+                excerpt={entry.data.excerpt}
+                href={entry.data.externalUrl ?? `/en/writing/${entry.id}/`}
+                external={!!entry.data.externalUrl}
+                linkLabel={entry.data.externalUrl ? 'Read on Interdisciplinarist ↗' : 'Read the essay →'}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+    ))}
+
+    <div class="max-w-[52rem] mx-auto px-8 py-16">
+      <p class="text-[1rem] text-ink-muted leading-[1.75] mb-6">Subscribe to be the first to know when new essays are published.</p>
       <div class="embed-wrapper">
         <iframe
           src="https://embeds.beehiiv.com/ab3b485e"
@@ -32,19 +84,12 @@ import Footer from '../../components/Footer.astro';
 </Layout>
 
 <style>
-  .coming-soon-page {
-    min-height: 60vh;
-    border-bottom: 1px solid var(--color-stone);
-  }
   .eyebrow {
     font-size: 0.7rem;
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-teal);
-  }
-  .embed-wrapper {
-    max-width: 42rem;
   }
   .teal-link {
     color: var(--color-teal);
@@ -53,4 +98,21 @@ import Footer from '../../components/Footer.astro';
     transition: border-color 0.15s;
   }
   .teal-link:hover { border-color: var(--color-teal); }
+  .essay-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  .empty-state {
+    font-size: 0.95rem;
+    color: var(--color-ink-muted);
+    line-height: 1.7;
+    max-width: 36rem;
+  }
+  .embed-wrapper {
+    max-width: 42rem;
+  }
+  @media (max-width: 768px) {
+    .essay-grid { grid-template-columns: 1fr; }
+  }
 </style>

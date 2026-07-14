@@ -1,5 +1,6 @@
 export const ui = {
   nav: {
+    home:     'Home',
     about:    'About',
     work:     'Work with Me',
     speaking: 'Speaking',

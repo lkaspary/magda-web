@@ -3,6 +3,7 @@ export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { PenLine, Mic, Handshake } from '@lucide/astro';
 ---
 <Layout title="Magda Kaspary" description="A verdadeira questão nunca foi o que a tecnologia pode fazer, mas que tipo de organização humana escolhemos construir. Trabalho com líderes prontos para levar essa pergunta a sério." lang="pt">
   <Header slot="header" />
@@ -42,22 +43,22 @@ import Footer from '../../components/Footer.astro';
   </section>
 
   <!-- THREE-COLUMN PANEL -->
-  <section class="bg-teal-light border-t border-b border-stone">
-    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
-      <div>
-        <div class="panel-icon">✍️</div>
+  <section class="border-t border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="card">
+        <PenLine class="panel-icon" size={24} stroke-width={1.5} />
         <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Escreve</h3>
         <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Ensaios na interseção de psicologia, pensamento sistêmico e vida organizacional — para líderes que querem pensar com mais clareza.</p>
         <a href="/pt/escrita" class="panel-link">Leia os ensaios →</a>
       </div>
-      <div>
-        <div class="panel-icon">🎤</div>
+      <div class="card">
+        <Mic class="panel-icon" size={24} stroke-width={1.5} />
         <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Palestras</h3>
         <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Palestras e workshops sobre inteligência intercultural, liderança e a construção de organizações que honram a complexidade humana.</p>
         <a href="/pt/palestras" class="panel-link">Agende uma palestra →</a>
       </div>
-      <div>
-        <div class="panel-icon">🤝</div>
+      <div class="card">
+        <Handshake class="panel-icon" size={24} stroke-width={1.5} />
         <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Trabalha com Pessoas</h3>
         <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Coaching e trabalho consultivo com líderes navegando as perguntas mais difíceis de suas organizações — as humanas.</p>
         <a href="/pt/trabalho" class="panel-link">Trabalhe com Magda →</a>
@@ -212,7 +213,7 @@ import Footer from '../../components/Footer.astro';
 
   /* PANEL */
   .panel-icon {
-    font-size: 1.4rem;
+    color: var(--color-teal);
     margin-bottom: 1rem;
   }
   .panel-link {

@@ -1,19 +1,71 @@
 ---
 export const prerender = true;
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import TagCard from '../../components/TagCard.astro';
+import EssayCard from '../../components/EssayCard.astro';
+import { lenses } from '../../content/lenses.ts';
+
+const lensDescriptions: Record<string, string> = {
+  'personal-creative': 'Ensaios sobre a vida interior — criatividade, identidade e as perguntas que não cabem num cargo.',
+  'professional': 'Liderança, desenvolvimento intercultural e pensamento sistêmico — para quem constrói organizações que honram a complexidade.',
+};
+
+const allEssays = await getCollection('writingPt');
+
+const sections = lenses.map((lens) => {
+  const essays = allEssays
+    .filter((e) => e.data.tags.includes(lens.slug))
+    .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+  return {
+    ...lens,
+    description: lensDescriptions[lens.slug] ?? '',
+    essays,
+    meta: essays.length === 0 ? 'Em breve' : `${essays.length} ${essays.length === 1 ? 'ensaio' : 'ensaios'}`,
+  };
+});
 ---
-<Layout title="Escrita | Magda Kaspary" description="Ensaios sobre liderança, cultura e a interseção de ideias. Novos textos publicados no Interdisciplinarist — o espaço de Magda para o pensamento de longo formato." lang="pt">
+<Layout title="Escrita | Magda Kaspary" description="Ensaios na interseção de psicologia, pensamento sistêmico e vida organizacional — divididos entre seu trabalho pessoal e criativo e sua escrita profissional." lang="pt">
   <Header slot="header" />
 
-  <div class="coming-soon-page">
-    <div class="max-w-[52rem] mx-auto px-8 py-24">
-      <p class="eyebrow">Em Breve</p>
-      <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-8">Escrita</h1>
-      <p class="text-[1.15rem] leading-[1.8] text-ink mb-4">Ensaios sobre liderança, cultura e a interseção de ideias. Novos textos publicados no <a href="https://interdisciplinarist.com" class="teal-link">Interdisciplinarist</a> — o espaço de Magda para o pensamento de longo formato. Em breve aqui.</p>
-      <p class="text-[1rem] text-ink-muted leading-[1.75] mb-12">Assine para ser a primeira a saber quando novos ensaios forem publicados.</p>
+  <div class="writing-page">
+    <div class="max-w-[68rem] mx-auto px-8 py-20 border-b border-stone">
+      <p class="eyebrow">Escrita</p>
+      <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-6">Ideias, por dois ângulos</h1>
+      <p class="text-[1.1rem] leading-[1.75] text-ink-muted max-w-[42rem]">Magda escreve sob duas lentes: a pessoal e criativa, e a profissional. Alguns textos vivem aqui; outros são publicados no <a href="https://interdisciplinarist.com" class="teal-link">Interdisciplinarist</a>, seu espaço para pensamento de longo alcance.</p>
+    </div>
 
+    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-stone">
+      {sections.map((s) => (
+        <TagCard name={s.name.pt} description={s.description} meta={s.meta} href={`#${s.slug}`} />
+      ))}
+    </div>
+
+    {sections.map((s) => (
+      <section id={s.slug} class="max-w-[68rem] mx-auto px-8 py-16 border-b border-stone">
+        <h2 class="font-serif text-[1.9rem] font-normal text-ink mb-8">{s.name.pt}</h2>
+        {s.essays.length === 0 ? (
+          <p class="empty-state">Ainda não há ensaios publicados nesta lente. Inscreva-se abaixo para saber assim que novos textos forem publicados.</p>
+        ) : (
+          <div class="essay-grid">
+            {s.essays.map((entry) => (
+              <EssayCard
+                title={entry.data.title}
+                excerpt={entry.data.excerpt}
+                href={entry.data.externalUrl ?? `/pt/escrita/${entry.id}/`}
+                external={!!entry.data.externalUrl}
+                linkLabel={entry.data.externalUrl ? 'Ler no Interdisciplinarist ↗' : 'Ler o ensaio →'}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+    ))}
+
+    <div class="max-w-[52rem] mx-auto px-8 py-16">
+      <p class="text-[1rem] text-ink-muted leading-[1.75] mb-6">Inscreva-se para ser a primeira pessoa a saber quando novos ensaios forem publicados.</p>
       <div class="embed-wrapper">
         <iframe
           src="https://embeds.beehiiv.com/34365e7e"
@@ -32,19 +84,12 @@ import Footer from '../../components/Footer.astro';
 </Layout>
 
 <style>
-  .coming-soon-page {
-    min-height: 60vh;
-    border-bottom: 1px solid var(--color-stone);
-  }
   .eyebrow {
     font-size: 0.7rem;
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-teal);
-  }
-  .embed-wrapper {
-    max-width: 42rem;
   }
   .teal-link {
     color: var(--color-teal);
@@ -53,4 +98,21 @@ import Footer from '../../components/Footer.astro';
     transition: border-color 0.15s;
   }
   .teal-link:hover { border-color: var(--color-teal); }
+  .essay-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  .empty-state {
+    font-size: 0.95rem;
+    color: var(--color-ink-muted);
+    line-height: 1.7;
+    max-width: 36rem;
+  }
+  .embed-wrapper {
+    max-width: 42rem;
+  }
+  @media (max-width: 768px) {
+    .essay-grid { grid-template-columns: 1fr; }
+  }
 </style>
