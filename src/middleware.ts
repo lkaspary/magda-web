@@ -1,8 +1,8 @@
 import { defineMiddleware } from 'astro:middleware';
 
 export const onRequest = defineMiddleware((ctx, next) => {
-  const host = ctx.request.headers.get('host') || '';
-  const isInter = host.includes('interdisciplinarist');
+  const host = (ctx.request.headers.get('host') || '').split(':')[0].toLowerCase();
+  const isInter = host === 'interdisciplinarist.com' || host.endsWith('.interdisciplinarist.com');
 
   ctx.locals.site = isInter ? 'interdisciplinarist' : 'magda';
 
