@@ -7,13 +7,21 @@ export interface Props {
   description?: string;
   lang: 'en' | 'pt';
   image?: string;
+  /** Overrides the path used to build canonical/OG URLs — needed on pages
+   * served via an internal middleware rewrite (see src/middleware.ts),
+   * where Astro.url.pathname reflects the rewritten path, not the public one. */
+  canonicalPath?: string;
+  /** Set false on non-magda (e.g. interdisciplinarist) pages, which don't have EN/PT alternates. */
+  hreflang?: boolean;
 }
-const { title, description = '', lang, image = '/images/og-default.jpg' } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const enURL = new URL(getAlternatePath(Astro.url.pathname, 'en'), Astro.site);
-const ptURL = new URL(getAlternatePath(Astro.url.pathname, 'pt'), Astro.site);
+const { title, description = '', lang, image = '/images/og-default.jpg', canonicalPath, hreflang = true } = Astro.props;
+const origin = Astro.url.origin;
+const path = canonicalPath ?? Astro.url.pathname;
+const canonicalURL = new URL(path, origin);
+const enURL = new URL(getAlternatePath(path, 'en'), origin);
+const ptURL = new URL(getAlternatePath(path, 'pt'), origin);
 const ogLocale = lang === 'pt' ? 'pt_BR' : 'en_US';
-const ogImageURL = new URL(image, Astro.site);
+const ogImageURL = new URL(image, origin);
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -24,9 +32,9 @@ const ogImageURL = new URL(image, Astro.site);
     {description && <meta name="description" content={description} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" hreflang="en" href={enURL} />
-    <link rel="alternate" hreflang="pt" href={ptURL} />
-    <link rel="alternate" hreflang="x-default" href={enURL} />
+    {hreflang && <link rel="alternate" hreflang="en" href={enURL} />}
+    {hreflang && <link rel="alternate" hreflang="pt" href={ptURL} />}
+    {hreflang && <link rel="alternate" hreflang="x-default" href={enURL} />}
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={canonicalURL} />

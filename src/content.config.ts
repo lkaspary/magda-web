@@ -25,4 +25,16 @@ const writingPt = defineCollection({
   schema: writingSchema,
 });
 
-export const collections = { writingEn, writingPt };
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/articles' }),
+  schema: z.object({
+    title: z.string(),
+    excerpt: z.string(),
+    tags: z.array(z.string()),
+    publishDate: z.coerce.date(),
+    tier: z.enum(['free', 'preview', 'premium']).default('free'),
+    featured: z.boolean().default(false),
+  }),
+});
+
+export const collections = { writingEn, writingPt, articles };

@@ -1,0 +1,22 @@
+---
+const base = Astro.locals.site === 'interdisciplinarist' ? '' : '/inter';
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-stone bg-cream mt-24">
+  <div class="max-w-[68rem] mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+      <div>
+        <p class="font-serif text-lg text-ink mb-2">Interdisciplinarist</p>
+        <a href="https://magdakaspary.com" class="text-sm text-violet hover:underline">By Magda Kaspary</a>
+      </div>
+      <nav class="flex flex-wrap gap-6 text-sm text-ink-muted" aria-label="Footer">
+        <a href={`${base}/articles`}    class="hover:text-violet">Articles</a>
+        <a href={`${base}/assessments`} class="hover:text-violet">Assessments</a>
+        <a href={`${base}/workbooks`}   class="hover:text-violet">Workbooks</a>
+      </nav>
+    </div>
+    <div class="mt-8 pt-6 border-t border-stone flex justify-between items-center text-xs text-ink-muted">
+      <span>© {year} Magda Kaspary</span>
+    </div>
+  </div>
+</footer>
