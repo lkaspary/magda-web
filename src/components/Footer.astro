@@ -13,7 +13,7 @@ const year = new Date().getFullYear();
         <p class="font-serif text-lg text-ink mb-2">Magda Kaspary</p>
         <a href="https://interdisciplinarist.com" class="text-sm text-teal hover:underline">{t.footer.hub}</a>
       </div>
-      <nav class="flex flex-wrap gap-6 text-sm text-ink-muted">
+      <nav class="flex flex-wrap gap-6 text-sm text-ink-muted" aria-label={t.nav.footerLabel}>
         <a href={`${base}/${r.about}`}    class="hover:text-teal">{t.nav.about}</a>
         <a href={`${base}/${r.work}`}     class="hover:text-teal">{t.nav.work}</a>
         <a href={`${base}/${r.speaking}`} class="hover:text-teal">{t.nav.speaking}</a>

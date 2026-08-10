@@ -9,7 +9,7 @@ const { name, description, meta, href } = Astro.props;
 const Tag = href ? 'a' : 'div';
 ---
 <Tag href={href} class="card tag-card">
-  <h3 class="tag-card-name">{name}</h3>
+  <h2 class="tag-card-name">{name}</h2>
   <p class="tag-card-description">{description}</p>
   <span class="tag-card-meta">{meta}</span>
 </Tag>
