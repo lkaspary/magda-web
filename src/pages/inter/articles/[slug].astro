@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import HeaderInter from '../../../components/HeaderInter.astro';
 import FooterInter from '../../../components/FooterInter.astro';
+import GatedContent from '../../../components/GatedContent.astro';
 
 const base = Astro.locals.site === 'interdisciplinarist' ? '' : '/inter';
 
@@ -29,9 +30,11 @@ const { Content } = await render(entry);
       <a href={`${base}/articles`} class="back-link">← All articles</a>
       <p class="eyebrow mt-6">{entry.data.tags.join(' · ')}</p>
       <h1 class="font-serif text-[2.6rem] font-normal leading-[1.15] text-ink mt-4 mb-10">{entry.data.title}</h1>
-      <div class="prose">
-        <Content />
-      </div>
+      <GatedContent tier={entry.data.tier} excerpt={entry.data.excerpt} source="article-reader">
+        <div class="prose">
+          <Content />
+        </div>
+      </GatedContent>
     </div>
   </article>
 

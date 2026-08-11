@@ -53,6 +53,7 @@ const articles = (activeTag ? allArticles.filter((a) => a.data.tags.includes(act
             excerpt={entry.data.excerpt}
             href={`${base}/articles/${entry.id}`}
             linkLabel="Read essay →"
+            tier={entry.data.tier}
           />
         ))}
       </div>

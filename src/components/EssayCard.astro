@@ -5,10 +5,12 @@ export interface Props {
   href: string;
   external?: boolean;
   linkLabel: string;
+  tier?: 'free' | 'preview' | 'premium';
 }
-const { title, excerpt, href, external = false, linkLabel } = Astro.props;
+const { title, excerpt, href, external = false, linkLabel, tier } = Astro.props;
 ---
 <div class="essay-card">
+  {tier && tier !== 'free' && <span class={`essay-card-badge ${tier}`}>{tier === 'premium' ? 'Premium' : 'Preview'}</span>}
   <h3 class="essay-card-title">{title}</h3>
   <p class="essay-card-excerpt">{excerpt}</p>
   <a
@@ -25,6 +27,24 @@ const { title, excerpt, href, external = false, linkLabel } = Astro.props;
   .essay-card {
     border-top: 2px solid var(--color-teal);
     padding-top: 1.25rem;
+  }
+  .essay-card-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    margin-bottom: 0.6rem;
+  }
+  .essay-card-badge.preview {
+    color: var(--color-violet-dark);
+    background: var(--color-violet-light);
+  }
+  .essay-card-badge.premium {
+    color: white;
+    background: var(--color-violet);
   }
   .essay-card-title {
     font-family: var(--font-serif);

@@ -1,0 +1,176 @@
+---
+import type { BeehiivSource } from '../lib/beehiiv';
+
+export interface Props {
+  tier: 'free' | 'preview' | 'premium';
+  excerpt: string;
+  source: BeehiivSource;
+}
+const { tier, excerpt, source } = Astro.props;
+const gated = tier !== 'free';
+---
+{gated ? (
+  <div class="gate" data-gate data-source={source}>
+    <div class="gate-content">
+      <slot />
+    </div>
+    <div class="gate-overlay">
+      <p class="gate-eyebrow">{tier === 'premium' ? 'Premium' : 'Preview'}</p>
+      <p class="gate-excerpt">{excerpt}</p>
+      <p class="gate-copy">
+        {tier === 'premium'
+          ? 'Full access to premium articles is coming soon — subscribe free to be notified the moment it opens.'
+          : 'Subscribe free to keep reading.'}
+      </p>
+      <form class="gate-form" data-gate-form>
+        <input type="email" name="email" placeholder="you@email.com" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="gate-status" data-gate-status></p>
+    </div>
+  </div>
+) : (
+  <slot />
+)}
+
+<style>
+  .gate {
+    position: relative;
+  }
+  .gate-content {
+    max-height: 16rem;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 35%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 35%, transparent 100%);
+  }
+  .gate.unlocked .gate-content {
+    max-height: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .gate-overlay {
+    margin-top: -4rem;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 28rem;
+    margin-inline: auto;
+    padding: 2rem 1.5rem 0;
+  }
+  .gate.unlocked .gate-overlay {
+    display: none;
+  }
+  .gate-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-violet);
+    margin-bottom: 0.5rem;
+  }
+  .gate-excerpt {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+    margin-bottom: 0.75rem;
+  }
+  .gate-copy {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+  }
+  .gate-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .gate-form input {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--color-stone);
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    background: white;
+    color: var(--color-ink);
+  }
+  .gate-form input:focus {
+    outline: none;
+    border-color: var(--color-violet);
+  }
+  .gate-form button {
+    padding: 0.7rem 1.25rem;
+    background: var(--color-violet);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .gate-form button:hover {
+    background: var(--color-violet-dark);
+  }
+  .gate-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .gate-status {
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+    min-height: 1.2rem;
+  }
+  .gate-status.success {
+    color: var(--color-violet-dark);
+  }
+  .gate-status.error {
+    color: #b94040;
+  }
+</style>
+
+<script>
+  document.addEventListener('submit', async (e) => {
+    const form = (e.target as HTMLElement).closest('[data-gate-form]') as HTMLFormElement | null;
+    if (!form) return;
+    e.preventDefault();
+
+    const wrapper = form.closest('[data-gate]') as HTMLElement | null;
+    if (!wrapper) return;
+
+    const source = wrapper.dataset.source;
+    const statusEl = wrapper.querySelector('[data-gate-status]') as HTMLElement | null;
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const emailInput = form.querySelector('input[name="email"]') as HTMLInputElement;
+    const email = emailInput.value.trim();
+
+    btn.textContent = 'Subscribing…';
+    btn.disabled = true;
+    if (statusEl) {
+      statusEl.textContent = '';
+      statusEl.className = 'gate-status';
+    }
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? 'Unknown error');
+      wrapper.classList.add('unlocked');
+    } catch {
+      if (statusEl) {
+        statusEl.className = 'gate-status error';
+        statusEl.textContent = 'Something went wrong. Please try again.';
+      }
+      btn.textContent = 'Subscribe';
+      btn.disabled = false;
+    }
+  });
+</script>
