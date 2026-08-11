@@ -1,0 +1,207 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import HeaderInter from '../../components/HeaderInter.astro';
+import FooterInter from '../../components/FooterInter.astro';
+import EssayCard from '../../components/EssayCard.astro';
+
+const base = Astro.locals.site === 'interdisciplinarist' ? '' : '/inter';
+
+const allArticles = await getCollection('articles');
+const featured = allArticles
+  .filter((a) => a.data.featured)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+---
+<Layout
+  title="Interdisciplinarist — Magda Kaspary"
+  description="Essays, assessments, and workbooks at the intersection of psychology, systems thinking, and intercultural intelligence."
+  lang="en"
+  canonicalPath={`${base}/`}
+  hreflang={false}
+>
+  <HeaderInter slot="header" />
+
+  <!-- HERO -->
+  <section class="hero border-b border-stone">
+    <div class="hero-text">
+      <p class="eyebrow">Interdisciplinarist</p>
+      <h1 class="hero-name">The border between disciplines is not a wall. It's an invitation.</h1>
+      <p class="hero-sub">I spent years moving between psychology, systems thinking, and intercultural intelligence — until I stopped moving between them and started inhabiting all of them at once. This is where that thinking lives in public: essays, assessments, and workbooks for people building organizations that honor complexity.</p>
+      <a href={`${base}/articles`} class="btn-primary">Read the essays →</a>
+    </div>
+    <div class="rounded overflow-hidden">
+      <img src="/images/magda-books.jpg" alt="" class="w-full block object-cover rounded" />
+    </div>
+  </section>
+
+  <!-- VALUE PROP -->
+  <section class="max-w-[68rem] mx-auto px-8 py-16 border-b border-stone">
+    <p class="section-label">What's here</p>
+    <div class="ideas-grid">
+      <div class="idea-card">
+        <h2 class="idea-card-title">Articles</h2>
+        <p>Long-form essays on leadership, culture, and the systems underneath both — free and members-only.</p>
+      </div>
+      <div class="idea-card">
+        <h2 class="idea-card-title">Assessments</h2>
+        <p>Self-diagnostic tools to examine your leadership, your team, and your organization's culture.</p>
+      </div>
+      <div class="idea-card">
+        <h2 class="idea-card-title">Workbooks</h2>
+        <p>Practical, structured guides for putting the thinking to work inside a real organization.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLES -->
+  <section class="max-w-[68rem] mx-auto px-8 py-16 border-b border-stone">
+    <p class="section-label">Featured</p>
+    {featured.length === 0 ? (
+      <p class="empty-state">The first essays are on their way. Subscribe below to know the moment they're live.</p>
+    ) : (
+      <div class="essays-grid">
+        {featured.map((entry) => (
+          <EssayCard
+            title={entry.data.title}
+            excerpt={entry.data.excerpt}
+            href={`${base}/articles/${entry.id}`}
+            linkLabel="Read essay →"
+          />
+        ))}
+      </div>
+    )}
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="subscribe" class="bg-violet">
+    <div class="newsletter-inner max-w-[68rem] mx-auto px-8">
+      <div>
+        <h2 class="font-serif text-[2rem] font-light text-white mb-2">Thinking across disciplines, in your inbox.</h2>
+        <p class="text-[0.95rem] leading-[1.6] max-w-[38rem]" style="color: rgba(255,255,255,0.75)">Essays on leadership, culture, and the art of building organizations that are both high-performing and deeply human — a few times a month.</p>
+      </div>
+      <div class="newsletter-embed">
+        <script is:inline async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="ab3b485e-a855-4dce-8ab9-31cddf8cabaa"></script>
+      </div>
+    </div>
+  </section>
+
+  <FooterInter slot="footer" />
+</Layout>
+
+<style>
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-violet);
+    margin-bottom: 1rem;
+  }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 38%;
+    min-height: 70vh;
+  }
+  .hero-text {
+    padding: 5rem 4rem 4rem 2rem;
+    max-width: 34rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-name {
+    font-family: var(--font-serif);
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-ink);
+    margin-bottom: 1.25rem;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+    margin-bottom: 2rem;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--color-violet);
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.15s;
+    align-self: flex-start;
+  }
+  .btn-primary:hover { background: var(--color-violet-dark); }
+
+  /* VALUE PROP */
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    margin-bottom: 2rem;
+  }
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .idea-card {
+    border-top: 2px solid var(--color-violet);
+    padding-top: 1.25rem;
+  }
+  .idea-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+  .idea-card p {
+    font-size: 0.9rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  /* FEATURED */
+  .empty-state {
+    font-size: 0.95rem;
+    color: var(--color-ink-muted);
+    line-height: 1.7;
+  }
+  .essays-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  /* NEWSLETTER */
+  .newsletter-inner {
+    padding: 4.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .newsletter-embed {
+    flex-shrink: 0;
+    min-width: 280px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-text { padding: 3.5rem 1.5rem 3rem; max-width: none; }
+    .ideas-grid, .essays-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
