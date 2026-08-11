@@ -8,8 +8,9 @@ export const onRequest = defineMiddleware((ctx, next) => {
 
   // On interdisciplinarist.com, the /inter/* pages should serve at the root
   // path (interdisciplinarist.com/articles, not /inter/articles). Rewrite
-  // internally so the visible URL stays clean.
-  if (isInter && !ctx.url.pathname.startsWith('/inter')) {
+  // internally so the visible URL stays clean. API routes are excluded —
+  // they're not part of the /inter tree and must resolve at their real path.
+  if (isInter && !ctx.url.pathname.startsWith('/inter') && !ctx.url.pathname.startsWith('/api')) {
     const target = ctx.url.pathname === '/' ? '/inter' : `/inter${ctx.url.pathname}`;
     return ctx.rewrite(target);
   }
