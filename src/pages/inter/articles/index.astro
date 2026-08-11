@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import HeaderInter from '../../../components/HeaderInter.astro';
+import FooterInter from '../../../components/FooterInter.astro';
+import EssayCard from '../../../components/EssayCard.astro';
+
+const base = Astro.locals.site === 'interdisciplinarist' ? '' : '/inter';
+
+const allArticles = await getCollection('articles');
+const tags = [...new Set(allArticles.flatMap((a) => a.data.tags))].sort();
+
+const activeTag = Astro.url.searchParams.get('tag');
+const articles = (activeTag ? allArticles.filter((a) => a.data.tags.includes(activeTag)) : allArticles)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+<Layout
+  title="Articles | Interdisciplinarist"
+  description="Essays on leadership, culture, and the systems underneath both."
+  lang="en"
+  canonicalPath={`${base}/articles${activeTag ? `?tag=${activeTag}` : ''}`}
+  hreflang={false}
+>
+  <HeaderInter slot="header" />
+
+  <div class="max-w-[68rem] mx-auto px-8 py-20 border-b border-stone">
+    <p class="eyebrow">Interdisciplinarist</p>
+    <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-6">Articles</h1>
+    <p class="text-[1.1rem] leading-[1.75] text-ink-muted max-w-[42rem]">Essays on leadership, culture, and the systems underneath both.</p>
+  </div>
+
+  {tags.length > 0 && (
+    <div class="max-w-[68rem] mx-auto px-8 py-6 border-b border-stone flex flex-wrap gap-3">
+      <a href={`${base}/articles`} class={`tag-filter ${!activeTag ? 'active' : ''}`}>All</a>
+      {tags.map((tag) => (
+        <a href={`${base}/articles?tag=${tag}`} class={`tag-filter ${activeTag === tag ? 'active' : ''}`}>{tag}</a>
+      ))}
+    </div>
+  )}
+
+  <div class="max-w-[68rem] mx-auto px-8 py-16">
+    {articles.length === 0 ? (
+      <p class="empty-state">
+        {activeTag
+          ? `No articles tagged "${activeTag}" yet.`
+          : "The first essays are on their way. Subscribe below to know the moment they're live."}
+      </p>
+    ) : (
+      <div class="essays-grid">
+        {articles.map((entry) => (
+          <EssayCard
+            title={entry.data.title}
+            excerpt={entry.data.excerpt}
+            href={`${base}/articles/${entry.id}`}
+            linkLabel="Read essay →"
+          />
+        ))}
+      </div>
+    )}
+  </div>
+
+  <FooterInter slot="footer" />
+</Layout>
+
+<style>
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-violet);
+  }
+  .tag-filter {
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--color-stone);
+    border-radius: 999px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .tag-filter:hover { color: var(--color-violet); border-color: var(--color-violet); }
+  .tag-filter.active { color: white; background: var(--color-violet); border-color: var(--color-violet); }
+  .empty-state {
+    font-size: 0.95rem;
+    color: var(--color-ink-muted);
+    line-height: 1.7;
+  }
+  .essays-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  @media (max-width: 900px) {
+    .essays-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
