@@ -145,3 +145,51 @@ Once staging checks out, promote to production in this order (mirrors the roadma
 2. Merge PR #3 (Beehiiv gating) to `main` — it's stacked on #2, so merge #2 first or it won't have a clean diff.
 3. Do A2 (add `interdisciplinarist.com` as a real custom domain) and A5's production half (real Beehiiv secrets on the `magda-web` project) if you haven't already.
 4. Repeat Sections 3–4 above against the real `interdisciplinarist.com` domain as a final production sanity check.
+
+---
+
+## 8. Everything that needs action from you, by service provider
+
+A consolidated checklist across every external service this project touches — pulled together from the roadmap's scattered "your action" items so you can work through one provider at a time instead of hunting across docs. Item codes (A1, A5, etc.) cross-reference the roadmap's "Your action, right now" table, where the fuller explanation for each one lives.
+
+### GitHub
+| Item | What | Status |
+|---|---|---|
+| A1 | Review & merge PR #2 (Sprint 3 routing) | ⬜ Open |
+| A1b | Review & merge PR #3 (Beehiiv gating), after PR #2 | ⬜ Open, stacked on #2 |
+| — | Review & merge PR #4 (roadmap doc updates) | ⬜ Open — docs-only, safe to merge anytime, no dependency on the others |
+| — | Review & merge PR #5 (this testing manual) | ⬜ Open — docs-only, safe to merge anytime |
+| A6 | Decide what to do with PR #1 (stale Cloudflare autoconfig PR from April — close it, or merge + have me adapt staging around it) | ⬜ Undecided |
+
+### Cloudflare (dashboard: Workers & Pages)
+| Item | What | Status |
+|---|---|---|
+| A2 (S11) | Add `interdisciplinarist.com` as a custom domain on the **production** `magda-web` project (Settings → Domains & Routes) | ⬜ Not done |
+| A3 | Create a second Worker project (`magda-web-staging` or similar), same repo, production branch set to `staging` | ⬜ Not done |
+| A4 | Add `staging.magdakaspary.com` + `staging.interdisciplinarist.com` as custom domains on the new staging project | ⬜ Not done (depends on A3) |
+| A5 (part 1) | Set `BEEHIIV_API_KEY` + `BEEHIIV_PUBLICATION_ID` secrets on the **staging** project (test publication's values) | ⬜ Not done (depends on A3 + Beehiiv test publication below) |
+| A5 (part 2) | Set the same two secret names on the **production** `magda-web` project (real publication's values) — do this when you're ready to make gating live, not required to test staging | ⬜ Not done |
+| — | Cloudflare Web Analytics on interdisciplinarist.com (S29, Sprint 6) — already enabled for magdakaspary.com | ⬜ Not started — low priority, do after A2 |
+
+### Beehiiv
+| Item | What | Status |
+|---|---|---|
+| A5 (setup) | Create a test publication (any name, no real content needed) | ⬜ Not done |
+| A5 (setup) | Generate an API key for the test publication, note its Publication ID | ⬜ Not done — feeds into the Cloudflare secrets above |
+| M4 | Decide: one subscriber list with tags, or separate publications per brand? Currently both magdakaspary.com and interdisciplinarist.com share one EN list/publication | ⬜ Undecided — not blocking, current default (one list) already implemented |
+| — | (Later) If you want native Beehiiv **tags** rather than the `utm_source`-based segmentation this session's code uses, set up a dashboard automation (trigger on `utm_source` → add tag) — optional, not required for anything to function | ⬜ Optional, not started |
+
+### Stripe
+| Item | What | Status |
+|---|---|---|
+| — | No action needed yet | Account + test-mode keys already exist per your last check-in. Nothing to configure until Sprint 5 (S22) actually wires Checkout — I'll tell you exactly which secrets to add (`STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`) when that code lands. |
+
+### GoDaddy / DNS
+| Item | What | Status |
+|---|---|---|
+| — | Nameservers pointed at Cloudflare | ✅ Done (both magdakaspary.com and interdisciplinarist.com zones already on Cloudflare) — no action needed |
+
+### Resend
+| Item | What | Status |
+|---|---|---|
+| — | Contact form email delivery | ✅ Already configured in production (`RESEND_API_KEY`) — no action needed |
