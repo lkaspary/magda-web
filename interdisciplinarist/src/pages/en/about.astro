@@ -1,0 +1,151 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="About | Interdisciplinarist" description="The border between disciplines is not a wall — it's an invitation. About the Interdisciplinarist project and the thinking behind it." lang="en">
+  <Header slot="header" />
+
+  <!-- HERO -->
+  <section class="border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-20">
+      <p class="section-label">About</p>
+      <h1 class="font-serif text-[2.6rem] font-light leading-[1.15] text-ink max-w-[36rem]">The border between disciplines is not a wall. It's an invitation.</h1>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section>
+    <div class="max-w-[42rem] mx-auto px-8 py-16">
+
+      <div class="about-prose">
+        <p>The most important problems in the world don't respect disciplinary boundaries. A leadership challenge is also a psychological one. An intercultural misunderstanding is also a systems problem. The questions that matter most live at the intersection — and that's where the best thinking happens.</p>
+
+        <p><strong>Interdisciplinarist</strong> is a project by <a href="https://magdakaspary.com">Magda Kaspary</a> — a space for writing, tools, and ideas that weave together the fields she has spent her career navigating: leadership development, systems thinking, intercultural intelligence, and the kind of professional wisdom that comes only from experience.</p>
+
+        <h2>Why "Interdisciplinarist"</h2>
+
+        <p>An interdisciplinarist is someone who refuses to stay in one lane. Not because they can't specialize, but because they've seen what happens when disciplines talk to each other — unexpected connections, deeper understanding, better questions.</p>
+
+        <p>In an era of increasing specialization, the ability to think across boundaries is becoming rarer and more valuable. AI can summarize, calculate, and argue within a discipline faster than any human. What it can't do — yet — is the connecting work. The creative leap that sees a pattern from psychology illuminating an organizational design problem, or a principle from systems theory reshaping a leadership approach.</p>
+
+        <p>That's the work this space is about.</p>
+
+        <h2>Four pillars</h2>
+
+        <p>Everything here is organized around four interconnected areas of inquiry:</p>
+      </div>
+
+      <div class="pillar-cards">
+        <div class="pillar-card">
+          <img src="/images/pillars/pillar-02.jpg" alt="Ld" class="pillar-card-icon" />
+          <div>
+            <h3>Leadership Development</h3>
+            <p>What makes a leader worth following — beyond title and technique. The inner work, the relational skill, and the courage to ask hard questions.</p>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <img src="/images/pillars/pillar-05.jpg" alt="ST" class="pillar-card-icon" />
+          <div>
+            <h3>Systems Thinking</h3>
+            <p>Seeing the whole rather than just the parts. Understanding feedback loops, leverage points, and why the obvious solution is often the wrong one.</p>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <img src="/images/pillars/pillar-01.jpg" alt="id" class="pillar-card-icon" />
+          <div>
+            <h3>Intercultural Development</h3>
+            <p>Understanding how culture shapes perception, communication, and meaning. Not knowing about other cultures, but understanding how your own shapes everything you see.</p>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <img src="/images/pillars/pillar-03.jpg" alt="pW" class="pillar-card-icon" />
+          <div>
+            <h3>Professional Wisdom</h3>
+            <p>The hard-won lessons that only come from doing the work. The judgment, timing, and discernment that no textbook can teach and no AI can replicate.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-prose mt-12">
+        <h2>About Magda</h2>
+
+        <p>Magda Kaspary has spent over two decades working across Brazil, Latin America, Europe, and the United States — navigating the intersection of people, organizations, and culture. Her career in HR began with one clear intention: to make the workplace a more humane experience. Over the years, she kept discovering that no single discipline held the full answer.</p>
+
+        <p>She writes, coaches, and speaks about what she's learned at those intersections. Interdisciplinarist is where she shares that thinking publicly — as essays, workbooks, and practical tools for anyone who believes that the best answers come from better questions.</p>
+
+        <a href="https://magdakaspary.com/en/about" class="btn-outline mt-4">More about Magda →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .about-prose {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-ink);
+  }
+  .about-prose p {
+    margin-bottom: 1.5rem;
+  }
+  .about-prose h2 {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--color-ink);
+  }
+  .about-prose a {
+    color: var(--color-teal);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .about-prose a:hover { text-decoration-color: var(--color-teal); }
+  .about-prose strong {
+    font-weight: 500;
+  }
+
+  /* PILLAR CARDS */
+  .pillar-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .pillar-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: var(--color-teal-light);
+    border: 1px solid var(--color-stone);
+    border-radius: 8px;
+  }
+  .pillar-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1.5px solid var(--color-stone);
+    margin-top: 0.15rem;
+  }
+  .pillar-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    margin-bottom: 0.35rem;
+  }
+  .pillar-card p {
+    font-size: 0.88rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+</style>

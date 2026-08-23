@@ -1,0 +1,275 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="Interdisciplinarist" description="Leadership, psychology, systems thinking, intercultural intelligence — the questions that matter most live at the intersection. A space for the thinking that connects them." lang="en">
+  <Header slot="header" />
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner max-w-[68rem] mx-auto px-8">
+      <p class="hero-eyebrow">Where disciplines meet</p>
+      <h1 class="hero-title">Think across<br/>boundaries.</h1>
+      <p class="hero-sub">Leadership, psychology, systems thinking, intercultural intelligence — the questions that matter most live at the intersection. Interdisciplinarist is a space for the thinking that connects them.</p>
+      <a href="/en/reading" class="btn-primary">Start reading</a>
+    </div>
+    <div class="hero-mark">
+      <img src="/images/pillars/pillar-04.jpg" alt="" />
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-20">
+      <p class="section-label">Four Pillars</p>
+      <div class="pillars-grid">
+        <div class="pillar">
+          <img src="/images/pillars/pillar-02.jpg" alt="Ld" class="pillar-icon" />
+          <h3 class="pillar-name">Leadership Development</h3>
+          <p class="pillar-desc">What makes a leader worth following — beyond title and technique.</p>
+        </div>
+        <div class="pillar">
+          <img src="/images/pillars/pillar-05.jpg" alt="ST" class="pillar-icon" />
+          <h3 class="pillar-name">Systems Thinking</h3>
+          <p class="pillar-desc">Seeing the whole, the patterns, and the leverage points that change everything.</p>
+        </div>
+        <div class="pillar">
+          <img src="/images/pillars/pillar-01.jpg" alt="id" class="pillar-icon" />
+          <h3 class="pillar-name">Intercultural Development</h3>
+          <p class="pillar-desc">Understanding how culture shapes what we see — and what we miss.</p>
+        </div>
+        <div class="pillar">
+          <img src="/images/pillars/pillar-03.jpg" alt="pW" class="pillar-icon" />
+          <h3 class="pillar-name">Professional Wisdom</h3>
+          <p class="pillar-desc">The hard-won lessons that no curriculum teaches and no algorithm replaces.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST -->
+  <section class="border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-20">
+      <p class="section-label">Latest</p>
+      <h2 class="font-serif text-[2rem] font-light text-ink mb-10">Recent thinking</h2>
+      <div class="latest-grid">
+        <a href="/en/reading/how-you-think-when-you-think-well" class="latest-card latest-card--link">
+          <div class="latest-tag latest-tag--workbook">Workbook</div>
+          <h3 class="latest-title">How You Think When You Think Well</h3>
+          <p class="latest-excerpt">Twelve modes of thinking — analytical, critical, creative, systemic, and more — mapped into a practical workbook for the age of AI.</p>
+          <span class="latest-meta">Coming soon — available in Portuguese →</span>
+        </a>
+        <article class="latest-card">
+          <div class="latest-tag">Essay</div>
+          <h3 class="latest-title">The Culture You Didn't Design</h3>
+          <p class="latest-excerpt">Every organization has a culture — the question is whether it was shaped on purpose or by accident.</p>
+          <span class="latest-meta">Coming soon</span>
+        </article>
+        <article class="latest-card">
+          <div class="latest-tag">Essay</div>
+          <h3 class="latest-title">Why the Best Leaders Ask Different Questions</h3>
+          <p class="latest-excerpt">The leaders who create the most meaningful change aren't the ones with the best answers — they're the ones with better questions.</p>
+          <span class="latest-meta">Coming soon</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="bg-teal">
+    <div class="newsletter-inner max-w-[68rem] mx-auto px-8">
+      <div>
+        <h2 class="font-serif text-[2rem] font-light text-white mb-2">Thinking across disciplines, in your inbox.</h2>
+        <p class="text-[0.95rem] leading-[1.6] max-w-[38rem]" style="color: rgba(255,255,255,0.75)">Essays, workbooks, and tools for leaders who refuse to stay in one lane — a few times a month.</p>
+      </div>
+      <div class="newsletter-embed">
+        <a href="https://interdisciplinarist.substack.com/subscribe" class="btn-subscribe">Subscribe</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  /* HERO */
+  .hero {
+    position: relative;
+    border-bottom: 1px solid var(--color-stone);
+    overflow: hidden;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    padding: 7rem 2rem 6rem;
+    max-width: 68rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    color: var(--color-ink);
+    margin-bottom: 2rem;
+  }
+  .hero-sub {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    max-width: 38rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-mark {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;
+    height: 260px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .hero-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* PILLARS */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .pillar {
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+  .pillar-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.25rem;
+    border: 2px solid var(--color-stone);
+  }
+  .pillar-name {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+  .pillar-desc {
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  /* LATEST */
+  .latest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .latest-card {
+    border-top: 2px solid var(--color-teal);
+    padding-top: 1.25rem;
+  }
+  .latest-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-violet);
+    margin-bottom: 0.75rem;
+  }
+  .latest-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+    color: var(--color-ink);
+  }
+  .latest-excerpt {
+    font-size: 0.88rem;
+    color: var(--color-ink-muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .latest-meta {
+    font-size: 0.78rem;
+    color: var(--color-stone);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .latest-card--link {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.15s;
+  }
+  .latest-card--link:hover {
+    transform: translateY(-2px);
+  }
+  .latest-tag--workbook {
+    color: var(--color-violet);
+  }
+
+  /* NEWSLETTER */
+  .newsletter-inner {
+    padding: 4.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .newsletter-embed {
+    flex-shrink: 0;
+  }
+  .btn-subscribe {
+    display: inline-block;
+    background: white;
+    color: var(--color-teal);
+    text-decoration: none;
+    padding: 0.85rem 2.5rem;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .btn-subscribe:hover {
+    background: var(--color-cream);
+    transform: translateY(-1px);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    .latest-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-mark { display: none; }
+  }
+  @media (max-width: 600px) {
+    .pillars-grid { grid-template-columns: 1fr; }
+    .newsletter-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>

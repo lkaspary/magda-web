@@ -1,0 +1,108 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="Sobre | Interdisciplinarist" description="A fronteira entre disciplinas não é um muro — é um convite. Sobre o projeto Interdisciplinarist e o pensamento por trás dele." lang="pt">
+  <Header slot="header" />
+
+  <section class="border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-20">
+      <p class="section-label">Sobre</p>
+      <h1 class="font-serif text-[2.6rem] font-light leading-[1.15] text-ink max-w-[36rem]">A fronteira entre disciplinas não é um muro. É um convite.</h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="max-w-[42rem] mx-auto px-8 py-16">
+
+      <div class="about-prose">
+        <p>Os problemas mais importantes do mundo não respeitam fronteiras disciplinares. Um desafio de liderança é também um desafio psicológico. Um mal-entendido intercultural é também um problema sistêmico. As perguntas que mais importam vivem na interseção — e é lá que o melhor pensamento acontece.</p>
+
+        <p><strong>Interdisciplinarist</strong> é um projeto de <a href="https://magdakaspary.com">Magda Kaspary</a> — um espaço para escrita, ferramentas e ideias que entrelaçam os campos que ela tem navegado ao longo de sua carreira: desenvolvimento de liderança, pensamento sistêmico, inteligência intercultural e o tipo de sabedoria profissional que só vem da experiência.</p>
+
+        <h2>Por que "Interdisciplinarist"</h2>
+
+        <p>Uma interdisciplinarista é alguém que se recusa a ficar em uma só faixa. Não porque não consiga se especializar, mas porque já viu o que acontece quando as disciplinas conversam entre si — conexões inesperadas, compreensão mais profunda, perguntas melhores.</p>
+
+        <p>Em uma era de especialização crescente, a capacidade de pensar além das fronteiras está se tornando mais rara e mais valiosa. A IA consegue resumir, calcular e argumentar dentro de uma disciplina mais rápido que qualquer humano. O que ela não consegue fazer — ainda — é o trabalho de conexão. O salto criativo que vê um padrão da psicologia iluminando um problema de design organizacional, ou um princípio do pensamento sistêmico remodelando uma abordagem de liderança.</p>
+
+        <p>É desse trabalho que este espaço trata.</p>
+
+        <h2>Quatro pilares</h2>
+
+        <p>Tudo aqui é organizado em torno de quatro áreas de investigação interconectadas:</p>
+      </div>
+
+      <div class="pillar-cards">
+        <div class="pillar-card">
+          <img src="/images/pillars/pillar-02.jpg" alt="Ld" class="pillar-card-icon" />
+          <div>
+            <h3>Desenvolvimento de Liderança</h3>
+            <p>O que faz um líder digno de ser seguido — além do cargo e da técnica. O trabalho interior, a habilidade relacional e a coragem de fazer perguntas difíceis.</p>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <img src="/images/pillars/pillar-05.jpg" alt="ST" class="pillar-card-icon" />
+          <div>
+            <h3>Pensamento Sistêmico</h3>
+            <p>Enxergar o todo ao invés das partes. Entender ciclos de feedback, pontos de alavancagem e por que a solução óbvia frequentemente é a errada.</p>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <img src="/images/pillars/pillar-01.jpg" alt="id" class="pillar-card-icon" />
+          <div>
+            <h3>Desenvolvimento Intercultural</h3>
+            <p>Compreender como a cultura molda a percepção, a comunicação e o significado. Não conhecer outras culturas, mas entender como a sua própria molda tudo o que você vê.</p>
+          </div>
+        </div>
+        <div class="pillar-card">
+          <img src="/images/pillars/pillar-03.jpg" alt="pW" class="pillar-card-icon" />
+          <div>
+            <h3>Sabedoria Profissional</h3>
+            <p>As lições conquistadas que só vêm de fazer o trabalho. O julgamento, o timing e o discernimento que nenhum livro-texto ensina e nenhuma IA replica.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-prose mt-12">
+        <h2>Sobre Magda</h2>
+
+        <p>Magda Kaspary passou mais de duas décadas trabalhando entre Brasil, América Latina, Europa e Estados Unidos — navegando a interseção de pessoas, organizações e cultura. Sua carreira em RH começou com uma intenção clara: tornar o ambiente de trabalho uma experiência mais humana. Com os anos, ela continuou descobrindo que nenhuma disciplina sozinha tinha a resposta completa.</p>
+
+        <p>Ela escreve, faz coaching e palestra sobre o que aprendeu nessas interseções. Interdisciplinarist é onde ela compartilha esse pensamento publicamente — como ensaios, workbooks e ferramentas práticas para quem acredita que as melhores respostas vêm de perguntas melhores.</p>
+
+        <a href="https://magdakaspary.com/pt/sobre" class="btn-outline mt-4">Mais sobre Magda →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .about-prose { font-size: 1.05rem; line-height: 1.8; color: var(--color-ink); }
+  .about-prose p { margin-bottom: 1.5rem; }
+  .about-prose h2 {
+    font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400;
+    margin-top: 3rem; margin-bottom: 1rem; color: var(--color-ink);
+  }
+  .about-prose a { color: var(--color-teal); text-decoration: underline; text-underline-offset: 2px; }
+  .about-prose strong { font-weight: 500; }
+  .pillar-cards { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+  .pillar-card {
+    display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.25rem;
+    background: var(--color-teal-light); border: 1px solid var(--color-stone); border-radius: 8px;
+  }
+  .pillar-card-icon {
+    width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; border: 1.5px solid var(--color-stone); margin-top: 0.15rem;
+  }
+  .pillar-card h3 {
+    font-family: var(--font-serif); font-size: 1.15rem; font-weight: 400;
+    color: var(--color-ink); margin-bottom: 0.35rem;
+  }
+  .pillar-card p { font-size: 0.88rem; color: var(--color-ink-muted); line-height: 1.6; }
+</style>

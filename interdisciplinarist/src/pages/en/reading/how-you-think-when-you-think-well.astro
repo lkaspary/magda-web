@@ -1,0 +1,163 @@
+---
+export const prerender = true;
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<Layout title="How You Think When You Think Well | Interdisciplinarist" description="Twelve modes of thinking — analytical, critical, creative, systemic, and more — mapped into a practical workbook for the age of AI." lang="en">
+  <Header slot="header" />
+
+  <section class="coming-soon-hero">
+    <div class="max-w-[42rem] mx-auto px-8">
+      <div class="article-meta">
+        <span class="article-type">Workbook</span>
+        <span class="article-pillar">Professional Wisdom</span>
+      </div>
+      <h1 class="article-title">How You Think When You Think Well</h1>
+      <p class="article-lead">Twelve modes of thinking — analytical, critical, creative, systemic, and more — mapped into a practical workbook for the age of AI.</p>
+    </div>
+  </section>
+
+  <div class="max-w-[42rem] mx-auto px-8 py-16">
+    <div class="coming-soon-card">
+      <div class="coming-soon-icon">
+        <img src="/images/pillars/pillar-04.jpg" alt="" class="coming-soon-mark" />
+      </div>
+      <h2 class="coming-soon-title">English version coming soon</h2>
+      <p class="coming-soon-text">This workbook is currently available in Portuguese. The English edition is in preparation — subscribe to be notified when it launches.</p>
+      <div class="coming-soon-actions">
+        <a href="/pt/leitura/como-voce-pensa-quando-pensa-bem" class="btn-primary-sm">Read in Portuguese →</a>
+        <a href="https://interdisciplinarist.substack.com/subscribe" class="btn-outline-sm">Subscribe for updates</a>
+      </div>
+    </div>
+
+    <div class="back-link-wrap">
+      <a href="/en/reading" class="back-link">← Back to Reading</a>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .coming-soon-hero {
+    border-bottom: 1px solid var(--color-stone);
+    padding: 5rem 0 3.5rem;
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .article-type {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--color-violet);
+    padding: 0.25rem 0.75rem;
+    border-radius: 3px;
+  }
+  .article-pillar {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+  .article-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--color-ink);
+    margin-bottom: 1.5rem;
+    text-wrap: balance;
+  }
+  .article-lead {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+  }
+
+  .coming-soon-card {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    border: 1px solid var(--color-stone);
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--color-teal-light), var(--color-violet-light));
+  }
+  .coming-soon-icon { margin-bottom: 1.5rem; }
+  .coming-soon-mark {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--color-stone);
+  }
+  .coming-soon-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    margin-bottom: 1rem;
+  }
+  .coming-soon-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+    max-width: 30rem;
+    margin: 0 auto 2rem;
+  }
+  .coming-soon-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary-sm {
+    display: inline-block;
+    background: var(--color-teal);
+    color: white;
+    text-decoration: none;
+    padding: 0.7rem 1.8rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background 0.15s;
+  }
+  .btn-primary-sm:hover { background: var(--color-teal-dark); }
+  .btn-outline-sm {
+    display: inline-block;
+    border: 1px solid var(--color-teal);
+    color: var(--color-teal);
+    text-decoration: none;
+    padding: 0.7rem 1.8rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: all 0.15s;
+  }
+  .btn-outline-sm:hover {
+    background: var(--color-teal);
+    color: white;
+  }
+
+  .back-link-wrap {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-stone);
+  }
+  .back-link {
+    font-size: 0.85rem;
+    color: var(--color-teal);
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--color-teal-dark); }
+</style>

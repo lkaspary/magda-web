@@ -1,0 +1,142 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="Contato | Interdisciplinarist" description="Entre em contato — quer discutir uma ideia, colaborar em um projeto ou simplesmente dizer olá." lang="pt">
+  <Header slot="header" />
+
+  <section class="border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-16">
+      <p class="section-label">Contato</p>
+      <h1 class="font-serif text-[2.6rem] font-light leading-[1.15] text-ink">Entre em Contato</h1>
+    </div>
+  </section>
+
+  <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-20 items-start">
+    <div>
+      <p class="text-[1.15rem] leading-[1.8] text-ink mb-8">Quer discutir uma ideia, colaborar em um projeto ou simplesmente dizer olá — adoraria ouvir de você.</p>
+
+      <div class="mb-8">
+        <div class="contact-label">Escreva diretamente</div>
+        <a href="mailto:hello@interdisciplinarist.com" class="email-link">hello@interdisciplinarist.com</a>
+        <p class="text-[0.875rem] text-ink-muted mt-2">Respondo todas as mensagens em alguns dias úteis.</p>
+      </div>
+
+      <div class="mb-8">
+        <div class="contact-label">Trabalhe com Magda</div>
+        <p class="text-[0.95rem] text-ink-muted leading-[1.7] mb-3">Para coaching, palestras ou assessoria, visite o site principal.</p>
+        <a href="https://magdakaspary.com/pt/contato" class="btn-outline">MagdaKaspary.com →</a>
+      </div>
+    </div>
+
+    <div>
+      <div id="form-status"></div>
+      <form id="contact-form" class="contact-form">
+        <div class="form-group">
+          <label>Seu nome</label>
+          <input type="text" name="name" autocomplete="name" required />
+        </div>
+        <div class="form-group">
+          <label>Seu email</label>
+          <input type="email" name="email" autocomplete="email" required />
+        </div>
+        <div class="form-group">
+          <label>Sobre o quê?</label>
+          <select name="topic" required>
+            <option value="">Selecione…</option>
+            <option value="general">Geral</option>
+            <option value="collaboration">Colaboração</option>
+            <option value="content">Ideia de conteúdo</option>
+            <option value="speaking">Palestra</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Sua mensagem</label>
+          <textarea name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar mensagem</button>
+      </form>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .contact-label {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--color-ink-muted); margin-bottom: 0.5rem;
+  }
+  .email-link {
+    font-size: 1rem; color: var(--color-teal); text-decoration: none;
+    border-bottom: 1px solid var(--color-stone); transition: border-color 0.15s;
+  }
+  .email-link:hover { border-color: var(--color-teal); }
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.8rem; font-weight: 500; color: var(--color-ink-muted); letter-spacing: 0.03em; }
+  .form-group input, .form-group select, .form-group textarea {
+    font-family: var(--font-sans); font-size: 0.95rem; color: var(--color-ink);
+    background: white; border: 1px solid var(--color-stone); border-radius: 4px;
+    padding: 0.65rem 0.875rem; transition: border-color 0.15s, box-shadow 0.15s; width: 100%;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--color-teal); box-shadow: 0 0 0 3px rgba(27, 107, 122, 0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235C5752' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.875rem center; padding-right: 2.5rem;
+  }
+  .btn-submit {
+    background: var(--color-teal); color: white; border: none; padding: 0.75rem 2rem;
+    border-radius: 4px; font-family: var(--font-sans); font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+    transition: background 0.15s; align-self: flex-start;
+  }
+  .btn-submit:hover { background: var(--color-teal-dark); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  #form-status.success { color: var(--color-teal); font-size: 1rem; line-height: 1.7; padding: 1.25rem 0 0.5rem; }
+  #form-status.error { color: #b94040; font-size: 0.875rem; padding: 0.75rem 0 0; }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const statusEl = document.getElementById('form-status');
+  if (form && statusEl) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      btn.textContent = 'Enviando…';
+      btn.disabled = true;
+      statusEl.textContent = '';
+      statusEl.className = '';
+      const payload = {
+        name: (form.querySelector('[name="name"]') as HTMLInputElement).value.trim(),
+        email: (form.querySelector('[name="email"]') as HTMLInputElement).value.trim(),
+        topic: (form.querySelector('[name="topic"]') as HTMLSelectElement).value,
+        message: (form.querySelector('[name="message"]') as HTMLTextAreaElement).value.trim(),
+      };
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error ?? 'Unknown error');
+        form.style.display = 'none';
+        statusEl.className = 'success';
+        statusEl.textContent = 'Obrigada! Responderei pessoalmente em alguns dias úteis.';
+      } catch (err) {
+        statusEl.className = 'error';
+        statusEl.textContent = 'Algo deu errado. Tente novamente ou me envie um email diretamente.';
+        btn.textContent = 'Enviar mensagem';
+        btn.disabled = false;
+      }
+    });
+  }
+</script>

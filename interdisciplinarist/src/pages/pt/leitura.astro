@@ -1,0 +1,172 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="Leitura | Interdisciplinarist" description="Ensaios, workbooks e ferramentas na interseção de liderança, psicologia, pensamento sistêmico e inteligência intercultural." lang="pt">
+  <Header slot="header" />
+
+  <section class="page-hero border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-16">
+      <p class="section-label">Leitura</p>
+      <h1 class="font-serif text-[2.6rem] font-light leading-[1.15] text-ink mb-4">Ensaios, workbooks e ferramentas</h1>
+      <p class="text-[1.1rem] text-ink-muted leading-[1.7] max-w-[42rem]">Ideias na interseção de liderança, psicologia, pensamento sistêmico e inteligência intercultural.</p>
+    </div>
+  </section>
+
+  <section class="border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-5">
+      <div class="flex flex-wrap gap-2">
+        <button class="filter-pill filter-pill--active">Todos</button>
+        <button class="filter-pill">Liderança</button>
+        <button class="filter-pill">Pensamento Sistêmico</button>
+        <button class="filter-pill">Intercultural</button>
+        <button class="filter-pill">Sabedoria Profissional</button>
+        <button class="filter-pill">Workbooks</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="max-w-[68rem] mx-auto px-8 py-16">
+      <div class="articles-list">
+
+        <a href="/pt/leitura/como-voce-pensa-quando-pensa-bem" class="article-row article-row--link">
+          <div class="article-type">
+            <span class="type-badge type-badge--workbook">Workbook</span>
+          </div>
+          <div class="article-body">
+            <h2 class="article-title">Como voce pensa quando pensa bem?</h2>
+            <p class="article-excerpt">Doze modos de pensar — analitico, critico, criativo, sistemico e mais — mapeados em um workbook pratico para a era da IA. Cada capitulo inclui os autores fundadores, exemplos praticos, armadilhas comuns, notas "Com IA" e exercicios para fazer a mao.</p>
+            <div class="article-meta">
+              <span class="meta-pill">Pensamento Sistemico</span>
+              <span class="meta-pill">Sabedoria Profissional</span>
+              <span class="meta-date meta-date--live">Ler agora →</span>
+            </div>
+          </div>
+        </a>
+
+        <article class="article-row">
+          <div class="article-type">
+            <span class="type-badge type-badge--essay">Ensaio</span>
+          </div>
+          <div class="article-body">
+            <h2 class="article-title">A Cultura que Você Não Projetou</h2>
+            <p class="article-excerpt">Toda organização tem uma cultura — a questão é se ela foi moldada de propósito ou por acidente. O que acontece quando você começa a prestar atenção no que não escolheu.</p>
+            <div class="article-meta">
+              <span class="meta-pill">Liderança</span>
+              <span class="meta-pill">Intercultural</span>
+              <span class="meta-date">Em breve</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-type">
+            <span class="type-badge type-badge--essay">Ensaio</span>
+          </div>
+          <div class="article-body">
+            <h2 class="article-title">O que Inteligência Intercultural Realmente É</h2>
+            <p class="article-excerpt">Não se trata de conhecer outras culturas. Trata-se de entender como a sua própria cultura molda tudo o que você vê — e aprender a sustentar mais de um enquadramento por vez.</p>
+            <div class="article-meta">
+              <span class="meta-pill">Intercultural</span>
+              <span class="meta-date">Em breve</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-type">
+            <span class="type-badge type-badge--essay">Ensaio</span>
+          </div>
+          <div class="article-body">
+            <h2 class="article-title">Por que os Melhores Líderes Fazem Perguntas Diferentes</h2>
+            <p class="article-excerpt">Os líderes que criam a mudança mais significativa não são os que têm as melhores respostas — são os que fazem perguntas melhores.</p>
+            <div class="article-meta">
+              <span class="meta-pill">Liderança</span>
+              <span class="meta-date">Em breve</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-teal">
+    <div class="max-w-[68rem] mx-auto px-8 py-16 text-center">
+      <h2 class="font-serif text-[1.8rem] font-light text-white mb-3">Não perca o que vem a seguir.</h2>
+      <p class="text-[0.95rem] mb-6 mx-auto max-w-[32rem]" style="color: rgba(255,255,255,0.75)">Novos ensaios e workbooks na sua caixa de entrada — algumas vezes por mês.</p>
+      <a href="https://interdisciplinarist.substack.com/subscribe" class="btn-subscribe">Inscrever-se</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .page-hero { background: var(--color-cream); }
+  .filter-pill {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    background: transparent;
+    border: 1px solid var(--color-stone);
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-pill:hover { border-color: var(--color-teal); color: var(--color-teal); }
+  .filter-pill--active { background: var(--color-teal); color: white; border-color: var(--color-teal); }
+  .articles-list { display: flex; flex-direction: column; }
+  .article-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-stone);
+    align-items: start;
+  }
+  .article-row:first-child { border-top: 1px solid var(--color-stone); }
+  .article-row--link {
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .article-row--link:hover {
+    background: var(--color-teal-light);
+  }
+  .meta-date--live {
+    color: var(--color-teal);
+  }
+  .type-badge {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 4px; display: inline-block;
+  }
+  .type-badge--workbook { background: var(--color-violet-light); color: var(--color-violet); }
+  .type-badge--essay { background: var(--color-teal-light); color: var(--color-teal); }
+  .article-title {
+    font-family: var(--font-serif); font-size: 1.4rem; font-weight: 400;
+    line-height: 1.3; color: var(--color-ink); margin-bottom: 0.6rem;
+  }
+  .article-excerpt {
+    font-size: 0.9rem; color: var(--color-ink-muted); line-height: 1.65;
+    margin-bottom: 0.75rem; max-width: 42rem;
+  }
+  .article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+  .meta-pill {
+    font-size: 0.68rem; font-weight: 500; color: var(--color-ink-muted);
+    background: var(--color-cream-mid); padding: 0.2rem 0.6rem; border-radius: 3px;
+  }
+  .meta-date { font-size: 0.78rem; color: var(--color-stone); font-weight: 500; margin-left: auto; }
+  .btn-subscribe {
+    display: inline-block; background: white; color: var(--color-teal); text-decoration: none;
+    padding: 0.85rem 2.5rem; border-radius: 4px; font-family: var(--font-sans);
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: background 0.15s;
+  }
+  .btn-subscribe:hover { background: var(--color-cream); }
+  @media (max-width: 640px) { .article-row { grid-template-columns: 1fr; gap: 0.75rem; } }
+</style>

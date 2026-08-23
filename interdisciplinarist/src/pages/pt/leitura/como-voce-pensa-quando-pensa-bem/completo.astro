@@ -1,0 +1,302 @@
+---
+export const prerender = true;
+import Layout from '../../../../layouts/Layout.astro';
+import Header from '../../../../components/Header.astro';
+import Footer from '../../../../components/Footer.astro';
+---
+<Layout title="Workbook Completo — Como voce pensa quando pensa bem? | Interdisciplinarist" description="Conteudo completo: doze modos de pensar mapeados em um workbook pratico para a era da IA." lang="pt">
+  <Header slot="header" />
+
+  <!-- PREMIUM GATE -->
+  <section class="gate-hero">
+    <div class="max-w-[42rem] mx-auto px-8">
+      <div class="gate-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Conteudo Premium</span>
+      </div>
+      <h1 class="gate-title">Como voce <em>pensa</em> quando pensa bem?</h1>
+      <p class="gate-subtitle">Workbook completo — 12 capitulos</p>
+    </div>
+  </section>
+
+  <div class="max-w-[42rem] mx-auto px-8 py-16">
+
+    <!-- ACCESS CHECK -->
+    <div id="gate-wall" class="gate-card">
+      <div class="gate-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-teal)" stroke-width="1.5">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h2 class="gate-card-title">Adquira o workbook completo</h2>
+      <p class="gate-card-text">O workbook completo com todos os 12 capitulos esta disponivel para compra — PDF com 52 paginas, entrega imediata.</p>
+      <div class="gate-actions">
+        <a href="https://app.lemonsqueezy.com/share/1311146" class="gate-cta">Comprar workbook — US$ 8,99</a>
+        <a href="/pt/leitura/como-voce-pensa-quando-pensa-bem" class="gate-back">← Ler amostra gratis</a>
+      </div>
+
+      <div class="gate-toc">
+        <h3 class="gate-toc-title">O que esta incluso:</h3>
+        <div class="gate-toc-grid">
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Fundamento</span>
+            <ol>
+              <li>Pensamento Analitico</li>
+              <li>Pensamento Linear</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Avaliacao</span>
+            <ol start="3">
+              <li>Pensamento Critico</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Geracao</span>
+            <ol start="4">
+              <li>Pensamento Criativo</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Ritmo</span>
+            <ol start="5">
+              <li>Divergente / Convergente</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Provocacao</span>
+            <ol start="6">
+              <li>Lateral / 6 Chapeus</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Relacao</span>
+            <ol start="7">
+              <li>Pensamento Sistemico</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Integracao</span>
+            <ol start="8">
+              <li>Pensamento Complexo</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Aplicacao</span>
+            <ol start="9">
+              <li>Design Thinking</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Hipotese</span>
+            <ol start="10">
+              <li>Abdutivo / Integrativo</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Incerteza</span>
+            <ol start="11">
+              <li>Probabilistico</li>
+            </ol>
+          </div>
+          <div class="gate-toc-family">
+            <span class="gate-toc-label">Consciencia</span>
+            <ol start="12">
+              <li>Metacognitivo</li>
+            </ol>
+          </div>
+        </div>
+        <p class="gate-toc-note">Mais: autoavaliacao, protocolo de trabalho com IA, e exercicios praticos em cada capitulo.</p>
+      </div>
+    </div>
+
+    <!-- PREMIUM CONTENT (hidden by default, shown when authenticated) -->
+    <div id="premium-content" class="premium-content" style="display:none;">
+      <div class="premium-notice">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Conteudo Premium — acesso exclusivo para assinantes</span>
+      </div>
+
+      <!-- FULL WORKBOOK CONTENT GOES HERE -->
+      <article class="article-body">
+        <p class="placeholder-note"><em>O conteudo completo do workbook sera publicado aqui quando o sistema de assinatura estiver configurado no Beehiiv.</em></p>
+      </article>
+    </div>
+
+  </div>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .gate-hero {
+    border-bottom: 1px solid var(--color-stone);
+    padding: 5rem 0 3rem;
+    background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-teal-light) 100%);
+  }
+  .gate-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    background: white;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--color-stone);
+  }
+  .gate-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--color-ink);
+    margin-bottom: 0.75rem;
+  }
+  .gate-title em {
+    font-style: italic;
+    color: var(--color-teal);
+  }
+  .gate-subtitle {
+    font-size: 0.9rem;
+    color: var(--color-ink-muted);
+  }
+
+  /* GATE CARD */
+  .gate-card {
+    border: 1px solid var(--color-stone);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    background: white;
+  }
+  .gate-icon {
+    margin-bottom: 1.5rem;
+  }
+  .gate-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    margin-bottom: 0.75rem;
+  }
+  .gate-card-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+    max-width: 28rem;
+    margin: 0 auto 2rem;
+  }
+  .gate-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .gate-cta {
+    display: inline-block;
+    background: var(--color-teal);
+    color: white;
+    text-decoration: none;
+    padding: 0.85rem 3rem;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .gate-cta:hover {
+    background: var(--color-teal-dark);
+    transform: translateY(-1px);
+  }
+  .gate-back {
+    font-size: 0.85rem;
+    color: var(--color-teal);
+    text-decoration: none;
+  }
+  .gate-back:hover { text-decoration: underline; }
+
+  /* TABLE OF CONTENTS */
+  .gate-toc {
+    text-align: left;
+    border-top: 1px solid var(--color-stone);
+    padding-top: 2rem;
+  }
+  .gate-toc-title {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+  }
+  .gate-toc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 2rem;
+  }
+  .gate-toc-family {
+    margin-bottom: 0.5rem;
+  }
+  .gate-toc-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-violet);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .gate-toc-family ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .gate-toc-family li {
+    font-size: 0.88rem;
+    color: var(--color-ink);
+    line-height: 1.5;
+    padding-left: 0;
+  }
+  .gate-toc-note {
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+    font-style: italic;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-stone);
+  }
+
+  /* PREMIUM CONTENT */
+  .premium-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-teal);
+    background: var(--color-teal-light);
+    padding: 0.75rem 1.25rem;
+    border-radius: 4px;
+    margin-bottom: 2.5rem;
+  }
+  .placeholder-note {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--color-ink-muted);
+    padding: 3rem 0;
+  }
+
+  @media (max-width: 640px) {
+    .gate-card { padding: 2rem 1.25rem; }
+    .gate-toc-grid { grid-template-columns: 1fr; }
+  }
+</style>

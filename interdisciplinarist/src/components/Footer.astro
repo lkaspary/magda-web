@@ -1,0 +1,28 @@
+---
+import { getLangFromUrl, useTranslations, routes } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = `/${lang}`;
+const r = routes[lang];
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-stone bg-cream mt-24">
+  <div class="max-w-[68rem] mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+      <div>
+        <a href={base}>
+          <img src="/images/logo-color.png" alt="Interdisciplinarist" class="h-9 mb-3" />
+        </a>
+        <a href="https://magdakaspary.com" class="text-sm text-teal hover:underline">{t.footer.magda}</a>
+      </div>
+      <nav class="flex flex-wrap gap-6 text-sm text-ink-muted">
+        <a href={`${base}/${r.reading}`} class="hover:text-teal">{t.nav.reading}</a>
+        <a href={`${base}/${r.about}`}   class="hover:text-teal">{t.nav.about}</a>
+        <a href={`${base}/${r.contact}`} class="hover:text-teal">{t.nav.contact}</a>
+      </nav>
+    </div>
+    <div class="mt-8 pt-6 border-t border-stone flex justify-between items-center text-xs text-ink-muted">
+      <span>&copy; {year} {t.footer.copyright}</span>
+    </div>
+  </div>
+</footer>

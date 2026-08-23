@@ -1,0 +1,242 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Layout title="Reading | Interdisciplinarist" description="Essays, workbooks, and tools at the intersection of leadership, psychology, systems thinking, and intercultural intelligence." lang="en">
+  <Header slot="header" />
+
+  <!-- PAGE HERO -->
+  <section class="page-hero border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-16">
+      <p class="section-label">Reading</p>
+      <h1 class="font-serif text-[2.6rem] font-light leading-[1.15] text-ink mb-4">Essays, workbooks & tools</h1>
+      <p class="text-[1.1rem] text-ink-muted leading-[1.7] max-w-[42rem]">Ideas at the intersection of leadership, psychology, systems thinking, and intercultural intelligence.</p>
+    </div>
+  </section>
+
+  <!-- FILTER PILLS -->
+  <section class="border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-5">
+      <div class="flex flex-wrap gap-2">
+        <button class="filter-pill filter-pill--active">All</button>
+        <button class="filter-pill">Leadership</button>
+        <button class="filter-pill">Systems Thinking</button>
+        <button class="filter-pill">Intercultural</button>
+        <button class="filter-pill">Professional Wisdom</button>
+        <button class="filter-pill">Workbooks</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES LIST -->
+  <section>
+    <div class="max-w-[68rem] mx-auto px-8 py-16">
+      <div class="articles-list">
+
+        <a href="/en/reading/how-you-think-when-you-think-well" class="article-row article-row--link">
+          <div class="article-type">
+            <span class="type-badge type-badge--workbook">Workbook</span>
+          </div>
+          <div class="article-body">
+            <h2 class="article-title">How You Think When You Think Well</h2>
+            <p class="article-excerpt">Twelve modes of thinking — analytical, critical, creative, systemic, and more — mapped into a practical workbook for the age of AI. Each chapter includes the founding authors, practical examples, common traps, "With AI" notes, and hands-on exercises.</p>
+            <div class="article-meta">
+              <span class="meta-pill">Systems Thinking</span>
+              <span class="meta-pill">Professional Wisdom</span>
+              <span class="meta-date meta-date--live">Available in Portuguese →</span>
+            </div>
+          </div>
+        </a>
+
+        <article class="article-row">
+          <div class="article-type">
+            <span class="type-badge type-badge--essay">Essay</span>
+          </div>
+          <div class="article-body">
+            <h2 class="article-title">The Culture You Didn't Design</h2>
+            <p class="article-excerpt">Every organization has a culture — the question is whether it was shaped on purpose or by accident. What happens when you start paying attention to what you didn't choose.</p>
+            <div class="article-meta">
+              <span class="meta-pill">Leadership</span>
+              <span class="meta-pill">Intercultural</span>
+              <span class="meta-date">Coming soon</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-type">
+            <span class="type-badge type-badge--essay">Essay</span>
+          </div>
+          <div class="article-body">
+            <h2 class="article-title">What Intercultural Intelligence Actually Is</h2>
+            <p class="article-excerpt">It's not about knowing other cultures. It's about understanding how your own shapes everything you see — and learning to hold more than one frame at a time.</p>
+            <div class="article-meta">
+              <span class="meta-pill">Intercultural</span>
+              <span class="meta-date">Coming soon</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="article-row">
+          <div class="article-type">
+            <span class="type-badge type-badge--essay">Essay</span>
+          </div>
+          <div class="article-body">
+            <h2 class="article-title">Why the Best Leaders Ask Different Questions</h2>
+            <p class="article-excerpt">The leaders who create the most meaningful change aren't the ones with the best answers — they're the ones with better questions.</p>
+            <div class="article-meta">
+              <span class="meta-pill">Leadership</span>
+              <span class="meta-date">Coming soon</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="bg-teal">
+    <div class="max-w-[68rem] mx-auto px-8 py-16 text-center">
+      <h2 class="font-serif text-[1.8rem] font-light text-white mb-3">Don't miss what's next.</h2>
+      <p class="text-[0.95rem] mb-6 mx-auto max-w-[32rem]" style="color: rgba(255,255,255,0.75)">New essays and workbooks delivered to your inbox — a few times a month.</p>
+      <a href="https://interdisciplinarist.substack.com/subscribe" class="btn-subscribe">Subscribe</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--color-cream);
+  }
+
+  /* FILTERS */
+  .filter-pill {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    background: transparent;
+    border: 1px solid var(--color-stone);
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-pill:hover {
+    border-color: var(--color-teal);
+    color: var(--color-teal);
+  }
+  .filter-pill--active {
+    background: var(--color-teal);
+    color: white;
+    border-color: var(--color-teal);
+  }
+
+  /* ARTICLES */
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .article-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-stone);
+    align-items: start;
+  }
+  .article-row:first-child { border-top: 1px solid var(--color-stone); }
+  .article-row--link {
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .article-row--link:hover {
+    background: var(--color-teal-light);
+  }
+  .meta-date--live {
+    color: var(--color-teal);
+  }
+
+  .type-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .type-badge--workbook {
+    background: var(--color-violet-light);
+    color: var(--color-violet);
+  }
+  .type-badge--essay {
+    background: var(--color-teal-light);
+    color: var(--color-teal);
+  }
+
+  .article-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--color-ink);
+    margin-bottom: 0.6rem;
+  }
+  .article-excerpt {
+    font-size: 0.9rem;
+    color: var(--color-ink-muted);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+    max-width: 42rem;
+  }
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .meta-pill {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    background: var(--color-cream-mid);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+  }
+  .meta-date {
+    font-size: 0.78rem;
+    color: var(--color-stone);
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  .btn-subscribe {
+    display: inline-block;
+    background: white;
+    color: var(--color-teal);
+    text-decoration: none;
+    padding: 0.85rem 2.5rem;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.15s;
+  }
+  .btn-subscribe:hover { background: var(--color-cream); }
+
+  @media (max-width: 640px) {
+    .article-row {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+</style>

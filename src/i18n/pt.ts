@@ -7,9 +7,6 @@ export const ui = {
     writing:  'Escrita',
     tools:    'Ferramentas',
     contact:  'Contato',
-    menu:     'Menu',
-    primaryLabel: 'Principal',
-    footerLabel:  'Rodapé',
   },
   hero: {
     cta: 'Explorar seu pensamento',

@@ -1,0 +1,472 @@
+---
+export const prerender = true;
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<Layout title="Como você pensa quando pensa bem? | Interdisciplinarist" description="Doze modos de pensar — analítico, crítico, criativo, sistêmico e mais — mapeados em um workbook prático para a era da IA." lang="pt">
+  <Header slot="header" />
+
+  <!-- ARTICLE HEADER -->
+  <section class="article-hero">
+    <div class="max-w-[42rem] mx-auto px-8">
+      <div class="article-meta">
+        <span class="article-type">Workbook</span>
+        <span class="article-pillar">Sabedoria Profissional</span>
+      </div>
+      <h1 class="article-title">Como você <em>pensa</em> quando pensa bem?</h1>
+      <p class="article-lead">Na era da inteligencia artificial, a vantagem deixou de estar em saber as respostas. A verdadeira vantagem esta em <strong>saber pensar</strong> as ideias que vao mudar o mundo.</p>
+      <div class="article-byline">
+        <span>Por Magda Kaspary</span>
+        <span class="article-date">Agosto 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE CONTENT -->
+  <article class="max-w-[42rem] mx-auto px-8 py-16">
+    <div class="article-body">
+      <p>Pensamento analitico, critico, criativo, divergente, convergente, lateral, sistemico, complexo, abdutivo, probabilistico, metacognitivo — e <em>design thinking</em>.</p>
+
+      <blockquote>
+        <p>Um novo tipo de pensamento e essencial se a humanidade quiser sobreviver e alcancar patamares mais altos.</p>
+        <cite>— Albert Einstein, carta de 25 de maio de 1946</cite>
+      </blockquote>
+
+      <h2>Por que este workbook existe agora</h2>
+
+      <p>Nunca foi tao barato obter uma resposta. Uma inteligencia artificial escreve, resume, calcula e argumenta em segundos — e e exatamente por isso que a habilidade escassa deixou de ser a resposta e passou a ser a <strong>pergunta</strong>.</p>
+
+      <p>Um sistema de IA responde ao recorte que voce deu. Se o problema chega mal formulado, ele volta bem escrito e errado. Se voce nao distinguir uma hipotese de uma conclusao, nao vai perceber quando a maquina trocar uma pela outra. Se nunca aprendeu a divergir antes de convergir, vai pedir "a melhor solucao" e receber a mais provavel — que e quase sempre a mais comum.</p>
+
+      <p>Os doze modos de pensar deste workbook nao competem com a IA: eles decidem se ela vai te tornar mais rapido ou apenas mais confiante. Por isso, cada capitulo termina com uma nota "Com IA" — como aquele modo muda o jeito de dirigir a maquina — e a parte final reune tudo em um protocolo de trabalho.</p>
+
+      <h2>O mapa dos doze modos</h2>
+
+      <p>Quatro familias, doze modos. Nenhum e superior aos outros: sao respostas diferentes para perguntas diferentes.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>N</th><th>Modo</th><th>O que faz</th><th>Familia</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>01</td><td><strong>Analitico</strong></td><td>Separa o todo em partes nomeaveis e acha a raiz</td><td>Fundamento</td></tr>
+            <tr><td>02</td><td><strong>Linear</strong></td><td>Ordena por dependencia e transforma plano em passo</td><td>Fundamento</td></tr>
+            <tr><td>03</td><td><strong>Critico</strong></td><td>Testa evidencia, logica e o proprio vies</td><td>Avaliacao</td></tr>
+            <tr><td>04</td><td><strong>Criativo</strong></td><td>Combina territorios distantes em ideias novas</td><td>Geracao</td></tr>
+            <tr><td>05</td><td><strong>Divergente/Convergente</strong></td><td>Abre muitas opcoes, depois fecha com criterio</td><td>Ritmo</td></tr>
+            <tr><td>06</td><td><strong>Lateral / 6 Chapeus</strong></td><td>Muda de direcao e faz o grupo pensar em paralelo</td><td>Provocacao</td></tr>
+            <tr><td>07</td><td><strong>Sistemico</strong></td><td>Enxerga ciclos, padroes e pontos de alavancagem</td><td>Relacao</td></tr>
+            <tr><td>08</td><td><strong>Complexo</strong></td><td>Religa o que a especializacao separou; sustenta o paradoxo</td><td>Integracao</td></tr>
+            <tr><td>09</td><td><strong>Design Thinking</strong></td><td>Parte da pessoa e aprende pelo prototipo</td><td>Aplicacao</td></tr>
+            <tr><td>10</td><td><strong>Abdutivo/Integrativo</strong></td><td>Inventa a melhor explicacao e a terceira via</td><td>Hipotese</td></tr>
+            <tr><td>11</td><td><strong>Probabilistico</strong></td><td>Decide em graus e separa decisao de resultado</td><td>Incerteza</td></tr>
+            <tr><td>12</td><td><strong>Metacognitivo</strong></td><td>Observa e regula o proprio pensamento</td><td>Consciencia</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Antes de comecar: onde voce ja esta</h2>
+
+      <p>Marque de 1 (quase nunca) a 5 (quase sempre). Nao existe pontuacao boa: existe um perfil. As linhas com nota baixa apontam os capitulos por onde vale comecar — e as com nota alta, os modos que voce provavelmente usa ate onde nao deveria.</p>
+
+      <div class="table-wrap">
+        <table class="assess-table">
+          <thead>
+            <tr><th>Cap.</th><th>Afirmacao</th><th>1–5</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>01</td><td>Quando algo da errado, meu primeiro impulso e listar as causas possiveis.</td><td class="score-col"></td></tr>
+            <tr><td>02</td><td>Prefiro executar um plano claro a explorar alternativas.</td><td class="score-col"></td></tr>
+            <tr><td>03</td><td>Costumo procurar o que refutaria a minha propria opiniao.</td><td class="score-col"></td></tr>
+            <tr><td>04</td><td>Tenho ideias em momentos improvaveis — banho, caminhada, antes de dormir.</td><td class="score-col"></td></tr>
+            <tr><td>05</td><td>Em reunioes, gero muitas opcoes antes de escolher.</td><td class="score-col"></td></tr>
+            <tr><td>06</td><td>Consigo mudar de abordagem quando percebo que estou insistindo no mesmo caminho.</td><td class="score-col"></td></tr>
+            <tr><td>07</td><td>Penso em como uma decisao afeta o resto do sistema, nao so a minha area.</td><td class="score-col"></td></tr>
+            <tr><td>08</td><td>Fico confortavel quando duas verdades opostas parecem ambas corretas.</td><td class="score-col"></td></tr>
+            <tr><td>09</td><td>Testo minhas ideias com pessoas reais antes de investir nelas.</td><td class="score-col"></td></tr>
+            <tr><td>10</td><td>Diante de um fato estranho, formulo mais de uma explicacao possivel.</td><td class="score-col"></td></tr>
+            <tr><td>11</td><td>Falo em probabilidades ("uns 70%") em vez de "provavelmente".</td><td class="score-col"></td></tr>
+            <tr><td>12</td><td>No fim do dia, reviso como pensei, nao so o que fiz.</td><td class="score-col"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="ai-check"><em>"Quando uso inteligencia artificial, escrevo o que eu ja penso antes de pedir a resposta."</em></p>
+
+      <div class="divider"></div>
+
+      <h2>Amostra: Capitulo 01 — Pensamento Analitico</h2>
+
+      <p class="chapter-subtitle"><em>Separar para enxergar</em></p>
+
+      <p>Pensar analiticamente e quebrar um todo confuso em partes nomeaveis, entender como cada parte funciona e reconstruir o conjunto com uma explicacao que seja coerente. E o pensamento que transforma "esta tudo dando errado" em "tres coisas especificas estao dando errado, e esta aqui e a raiz".</p>
+
+      <h3>Use quando:</h3>
+      <ul>
+        <li>O problema parece grande demais para comecar</li>
+        <li>Voce precisa achar a causa, nao o sintoma</li>
+        <li>Ha dados demais e sentido de menos</li>
+        <li>A decisao precisa ser justificada para outra pessoa</li>
+      </ul>
+
+      <h3>Como funciona</h3>
+
+      <div class="step">
+        <span class="step-num">1</span>
+        <div>
+          <strong>Delimitar</strong> — Escreva o problema em uma frase. Se nao couber em uma frase, ainda ha mais de um problema misturado.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <div>
+          <strong>Decompor</strong> — Divida em partes que nao se sobreponham e que, juntas, cubram o todo (o principio MECE de Barbara Minto).
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <div>
+          <strong>Medir</strong> — Atribua a cada parte um dado, um tamanho ou uma frequencia. Sem isso, tudo parece igualmente importante.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <div>
+          <strong>Isolar a raiz</strong> — Pergunte "por que?" ate a resposta virar processo, nao pessoa. Cinco vezes costuma bastar.
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">5</span>
+        <div>
+          <strong>Recompor</strong> — Volte ao todo com uma explicacao em uma linha. Se nao da para explicar, a analise nao terminou.
+        </div>
+      </div>
+
+      <blockquote>
+        <p>Dividir cada uma das dificuldades em tantas parcelas quantas forem possiveis e necessarias para melhor resolve-las.</p>
+        <cite>— Rene Descartes, Discurso do Metodo, 1637</cite>
+      </blockquote>
+
+      <h3>No trabalho</h3>
+      <p>Uma equipe de suporte ve o tempo de resposta subir 40%. Em vez de contratar mais gente, decompoe o funil: triagem, primeira resposta, escalonamento, resolucao. Descobre que 70% do atraso esta na triagem — e que 3 tipos de chamado representam 80% do volume. A solucao e melhorar o processo.</p>
+
+      <h3>Nos estudos</h3>
+      <p>Voce tira 5,5 numa prova de estatistica. Em vez de "sou ruim em exatas", separa os erros por tipo: interpretacao do enunciado (4 questoes), erro de conta (1), formula esquecida (2). O plano de estudo muda completamente — e leva um terco do tempo.</p>
+
+      <h3>Com IA</h3>
+      <p>A IA responde ao recorte que voce deu. O problema inteiro num prompt so devolve texto generico; as partes, uma a uma, devolvem material utilizavel — e conferivel.</p>
+    </div>
+
+    <!-- PAYWALL -->
+    <div class="paywall">
+      <div class="paywall-inner">
+        <div class="paywall-icon">
+          <img src="/images/pillars/pillar-04.jpg" alt="" class="paywall-mark" />
+        </div>
+        <h3 class="paywall-title">Este foi apenas a introducao e o Capitulo 01.</h3>
+        <p class="paywall-text">O workbook completo inclui todos os doze modos de pensar — Analitico, Linear, Critico, Criativo, Divergente/Convergente, Lateral, Sistemico, Complexo, Design Thinking, Abdutivo, Probabilistico e Metacognitivo — cada um com os autores fundadores, exemplos praticos, armadilhas comuns, notas "Com IA", e exercicios para fazer a mao.</p>
+        <a href="https://app.lemonsqueezy.com/share/1311146" class="paywall-cta">Comprar o workbook completo — US$ 8,99</a>
+        <p class="paywall-note">PDF com 52 paginas, entrega imediata apos a compra.</p>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="back-link-wrap">
+      <a href="/pt/leitura" class="back-link">← Voltar para Leitura</a>
+    </div>
+  </article>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  /* ARTICLE HERO */
+  .article-hero {
+    border-bottom: 1px solid var(--color-stone);
+    padding: 5rem 0 3.5rem;
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .article-type {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--color-violet);
+    padding: 0.25rem 0.75rem;
+    border-radius: 3px;
+  }
+  .article-pillar {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+  .article-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--color-ink);
+    margin-bottom: 1.5rem;
+    text-wrap: balance;
+  }
+  .article-title em {
+    font-style: italic;
+    color: var(--color-teal);
+  }
+  .article-lead {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+    margin-bottom: 2rem;
+  }
+  .article-lead strong {
+    color: var(--color-ink);
+    font-weight: 400;
+  }
+  .article-byline {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+  }
+  .article-date {
+    color: var(--color-stone);
+  }
+
+  /* ARTICLE BODY */
+  .article-body h2 {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    margin: 3rem 0 1rem;
+    line-height: 1.25;
+  }
+  .article-body h3 {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin: 2.5rem 0 0.75rem;
+    letter-spacing: 0.01em;
+  }
+  .article-body p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-ink);
+    margin-bottom: 1.25rem;
+  }
+  .article-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+  }
+  .article-body ul li {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+  .article-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-teal);
+  }
+  .article-body blockquote {
+    border-left: 3px solid var(--color-teal);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--color-teal-light);
+    border-radius: 0 4px 4px 0;
+  }
+  .article-body blockquote p {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+  .article-body blockquote cite {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-style: normal;
+    color: var(--color-ink-muted);
+  }
+  .chapter-subtitle {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--color-teal);
+    margin-bottom: 1.5rem;
+  }
+
+  /* STEPS */
+  .step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--color-teal);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.15rem;
+  }
+  .step div {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+  }
+
+  /* TABLE */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.5rem 0 2rem;
+  }
+  .table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .table-wrap th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--color-teal);
+  }
+  .table-wrap td {
+    padding: 0.6rem 1rem;
+    color: var(--color-ink);
+    border-bottom: 1px solid var(--color-stone);
+    vertical-align: top;
+  }
+  .table-wrap tbody tr:hover {
+    background: var(--color-teal-light);
+  }
+  .score-col {
+    min-width: 60px;
+    text-align: center;
+  }
+
+  /* MISC */
+  .ai-check {
+    background: var(--color-violet-light);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--color-violet);
+    font-size: 0.95rem;
+  }
+  .divider {
+    height: 1px;
+    background: var(--color-stone);
+    margin: 3rem 0;
+  }
+
+  /* PAYWALL */
+  .paywall {
+    margin-top: 3rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-teal-light), var(--color-violet-light));
+    border: 1px solid var(--color-stone);
+  }
+  .paywall-inner {
+    padding: 3rem 2.5rem;
+    text-align: center;
+  }
+  .paywall-icon {
+    margin-bottom: 1.5rem;
+  }
+  .paywall-mark {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--color-stone);
+  }
+  .paywall-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    margin-bottom: 1rem;
+  }
+  .paywall-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+    max-width: 34rem;
+    margin: 0 auto 2rem;
+  }
+  .paywall-cta {
+    display: inline-block;
+    background: var(--color-teal);
+    color: white;
+    text-decoration: none;
+    padding: 0.85rem 2.5rem;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .paywall-cta:hover {
+    background: var(--color-teal-dark);
+    transform: translateY(-1px);
+  }
+  .paywall-note {
+    font-size: 0.78rem;
+    color: var(--color-ink-muted);
+    margin-top: 1rem;
+  }
+
+  /* BACK */
+  .back-link-wrap {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-stone);
+  }
+  .back-link {
+    font-size: 0.85rem;
+    color: var(--color-teal);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .back-link:hover {
+    color: var(--color-teal-dark);
+  }
+</style>

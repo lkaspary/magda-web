@@ -7,9 +7,6 @@ export const ui = {
     writing:  'Writing',
     tools:    'Tools',
     contact:  'Contact',
-    menu:     'Menu',
-    primaryLabel: 'Primary',
-    footerLabel:  'Footer',
   },
   hero: {
     cta: 'Explore her thinking',

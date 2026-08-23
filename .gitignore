@@ -28,3 +28,13 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Large asset folders
+Workbooks/
+Logos e Icones/
+
+# Archives
+*.tar.gz
+
+# PDF products
+*.pdf

@@ -4,35 +4,34 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 ---
-<Layout title="Contact | Magda Kaspary" description="Get in touch with Magda Kaspary for coaching, speaking, or advisory inquiries. I respond to all messages within a few business days." lang="en">
+<Layout title="Contact | Interdisciplinarist" description="Get in touch — whether you want to discuss an idea, collaborate on a project, or just say hello." lang="en">
   <Header slot="header" />
 
-  <!-- PAGE HERO -->
-  <div class="page-hero border-b border-stone">
-    <div class="page-hero-bg">
-      <img src="/images/nature-fern.jpg" alt="" />
+  <!-- HERO -->
+  <section class="border-b border-stone">
+    <div class="max-w-[68rem] mx-auto px-8 py-16">
+      <p class="section-label">Contact</p>
+      <h1 class="font-serif text-[2.6rem] font-light leading-[1.15] text-ink">Get in Touch</h1>
     </div>
-    <div class="page-hero-inner max-w-[68rem] mx-auto px-8">
-      <h1 class="font-serif text-[2.8rem] font-normal leading-[1.15] text-ink">Get in Touch</h1>
-    </div>
-  </div>
+  </section>
 
   <!-- BODY -->
   <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-20 items-start">
 
-    <!-- LEFT: intro -->
+    <!-- LEFT -->
     <div>
-      <p class="text-[1.2rem] leading-[1.8] text-ink mb-8">I'd love to hear from you. Whether you're curious about working together, want to discuss a topic or just want to say hello — this is the right place. Drop me a message and I'll get back to you personally.</p>
+      <p class="text-[1.15rem] leading-[1.8] text-ink mb-8">Whether you want to discuss an idea, collaborate on a project, or just say hello — I'd love to hear from you.</p>
 
       <div class="mb-8">
-        <div class="contact-label">Prefer to talk first?</div>
-        <a href="https://cal.com/magda-c-kaspary-mewyzp" target="_blank" rel="noopener" class="btn-calendar">Schedule time with me</a>
+        <div class="contact-label">Write directly</div>
+        <a href="mailto:hello@interdisciplinarist.com" class="email-link">hello@interdisciplinarist.com</a>
+        <p class="text-[0.875rem] text-ink-muted mt-2">I respond to all messages within a few business days.</p>
       </div>
 
-      <div class="mb-10">
-        <div class="contact-label">Or write directly</div>
-        <a href="mailto:hello@magdakaspary.com" class="email-link">hello@magdakaspary.com</a>
-        <p class="text-[0.875rem] text-ink-muted mt-2">I respond to all messages within a few business days.</p>
+      <div class="mb-8">
+        <div class="contact-label">Work with Magda</div>
+        <p class="text-[0.95rem] text-ink-muted leading-[1.7] mb-3">For coaching, speaking, or advisory work, visit the main site.</p>
+        <a href="https://magdakaspary.com/en/contact" class="btn-outline">MagdaKaspary.com →</a>
       </div>
     </div>
 
@@ -52,10 +51,10 @@ import Footer from '../../components/Footer.astro';
           <label>What's this about?</label>
           <select name="topic" required>
             <option value="">Select one…</option>
-            <option value="coaching">Coaching</option>
-            <option value="speaking">Speaking</option>
-            <option value="book">Book a talk</option>
             <option value="general">General</option>
+            <option value="collaboration">Collaboration</option>
+            <option value="content">Content idea</option>
+            <option value="speaking">Speaking</option>
           </select>
         </div>
         <div class="form-group">
@@ -65,44 +64,12 @@ import Footer from '../../components/Footer.astro';
         <button type="submit" class="btn-submit">Send message</button>
       </form>
     </div>
-
   </div>
 
   <Footer slot="footer" />
 </Layout>
 
 <style>
-  /* PAGE HERO */
-  .page-hero {
-    position: relative;
-    overflow: hidden;
-  }
-  .page-hero-bg {
-    position: absolute;
-    inset: 0;
-  }
-  .page-hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 55%;
-    display: block;
-    filter: saturate(0.65) hue-rotate(-8deg);
-  }
-  .page-hero-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(250, 247, 242, 0.87);
-  }
-  .page-hero-inner {
-    position: relative;
-    z-index: 1;
-    padding-top: 4rem;
-    padding-bottom: 2.5rem;
-  }
-
-  /* CONTACT DETAILS */
   .contact-label {
     font-size: 0.7rem;
     font-weight: 500;
@@ -111,28 +78,6 @@ import Footer from '../../components/Footer.astro';
     color: var(--color-ink-muted);
     margin-bottom: 0.5rem;
   }
-  .btn-calendar {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: white;
-    color: var(--color-teal);
-    border: 1.5px solid var(--color-teal);
-    padding: 0.7rem 1.5rem;
-    border-radius: 4px;
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    transition: background 0.15s, color 0.15s;
-    margin-top: 0.5rem;
-  }
-  .btn-calendar::before {
-    content: '🗓';
-    font-size: 1rem;
-  }
-  .btn-calendar:hover { background: var(--color-teal); color: white; }
   .email-link {
     font-size: 1rem;
     color: var(--color-teal);

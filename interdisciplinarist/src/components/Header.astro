@@ -1,0 +1,93 @@
+---
+import { getLangFromUrl, useTranslations, routes, getAlternatePath } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = `/${lang}`;
+const r = routes[lang];
+---
+<header class="w-full border-b border-stone bg-cream">
+  <div class="max-w-[68rem] mx-auto px-6 py-4 flex items-center justify-between">
+    <a href={base} class="logo-link">
+      <img src="/images/logo-color.png" alt="Interdisciplinarist" class="h-10" />
+    </a>
+
+    <!-- Mobile menu button -->
+    <button id="mobile-menu-btn" class="md:hidden p-2 text-ink-muted" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href={base}                    class="nav-link">{t.nav.home}</a>
+      <a href={`${base}/${r.reading}`}  class="nav-link">{t.nav.reading}</a>
+      <a href={`${base}/${r.about}`}    class="nav-link">{t.nav.about}</a>
+      <a href={`${base}/${r.contact}`}  class="nav-link nav-link--cta">{t.nav.contact}</a>
+      <div class="text-xs text-ink-muted flex items-center gap-1">
+        <a href={getAlternatePath(Astro.url.pathname, 'en')} class={lang === 'en' ? 'text-teal font-medium' : 'hover:text-teal'}>EN</a>
+        <span class="text-stone">|</span>
+        <a href={getAlternatePath(Astro.url.pathname, 'pt')} class={lang === 'pt' ? 'text-teal font-medium' : 'hover:text-teal'}>PT</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mobile-nav" class="hidden md:hidden border-t border-stone bg-cream px-6 pb-5">
+    <nav class="flex flex-col gap-3 pt-4">
+      <a href={base}                    class="nav-link-mobile">{t.nav.home}</a>
+      <a href={`${base}/${r.reading}`}  class="nav-link-mobile">{t.nav.reading}</a>
+      <a href={`${base}/${r.about}`}    class="nav-link-mobile">{t.nav.about}</a>
+      <a href={`${base}/${r.contact}`}  class="nav-link-mobile">{t.nav.contact}</a>
+      <div class="text-xs text-ink-muted flex items-center gap-2 pt-2 border-t border-stone mt-1">
+        <a href={getAlternatePath(Astro.url.pathname, 'en')} class={lang === 'en' ? 'text-teal font-medium' : 'hover:text-teal'}>EN</a>
+        <span class="text-stone">|</span>
+        <a href={getAlternatePath(Astro.url.pathname, 'pt')} class={lang === 'pt' ? 'text-teal font-medium' : 'hover:text-teal'}>PT</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .logo-link:hover { opacity: 0.8; }
+
+  .nav-link {
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-link:hover { color: var(--color-teal); }
+
+  .nav-link--cta {
+    background: var(--color-teal);
+    color: white !important;
+    padding: 0.45rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+  .nav-link--cta:hover { background: var(--color-teal-dark); }
+
+  .nav-link-mobile {
+    font-size: 0.95rem;
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    padding: 0.35rem 0;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const nav = document.getElementById('mobile-nav');
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      nav.classList.toggle('hidden');
+    });
+  }
+</script>

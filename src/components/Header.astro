@@ -1,6 +1,5 @@
 ---
 import { getLangFromUrl, useTranslations, routes, getAlternatePath } from '../i18n/utils';
-import { Menu, X } from '@lucide/astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const base = `/${lang}`;
@@ -11,7 +10,7 @@ const r = routes[lang];
     <a href={base} class="font-serif text-xl text-ink hover:text-teal transition-colors">
       Magda Kaspary
     </a>
-    <nav class="hidden md:flex items-center gap-8" aria-label={t.nav.primaryLabel}>
+    <nav class="hidden md:flex items-center gap-8">
       <a href={base}                    class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.home}</a>
       <a href={`${base}/${r.about}`}    class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.about}</a>
       <a href={`${base}/${r.work}`}     class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.work}</a>
@@ -25,57 +24,5 @@ const r = routes[lang];
         <a href={getAlternatePath(Astro.url.pathname, 'pt')} class={lang === 'pt' ? 'text-teal font-medium' : 'hover:text-teal'}>PT</a>
       </div>
     </nav>
-    <button
-      id="menu-toggle"
-      type="button"
-      class="md:hidden inline-flex items-center justify-center p-2 -mr-2 text-ink rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal focus-visible:outline-offset-2"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      aria-label={t.nav.menu}
-    >
-      <Menu id="menu-icon-open" class="w-6 h-6" />
-      <X id="menu-icon-close" class="hidden w-6 h-6" />
-    </button>
   </div>
-  <nav id="mobile-menu" class="hidden md:hidden flex-col gap-1 border-t border-stone bg-cream px-6 py-4" aria-label={t.nav.menu}>
-    <a href={base}                    class="block py-2 text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.home}</a>
-    <a href={`${base}/${r.about}`}    class="block py-2 text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.about}</a>
-    <a href={`${base}/${r.work}`}     class="block py-2 text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.work}</a>
-    <a href={`${base}/${r.speaking}`} class="block py-2 text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.speaking}</a>
-    <a href={`${base}/${r.writing}`}  class="block py-2 text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.writing}</a>
-    <a href={`${base}/${r.tools}`}    class="block py-2 text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.tools}</a>
-    <a href={`${base}/${r.contact}`}  class="block mt-2 text-sm bg-teal text-white px-4 py-2 rounded text-center hover:bg-teal-dark transition-colors">{t.nav.contact}</a>
-    <div class="mt-4 pt-4 border-t border-stone text-xs text-ink-muted flex items-center gap-1">
-      <a href={getAlternatePath(Astro.url.pathname, 'en')} class={lang === 'en' ? 'text-teal font-medium' : 'hover:text-teal'}>EN</a>
-      <span class="text-stone">|</span>
-      <a href={getAlternatePath(Astro.url.pathname, 'pt')} class={lang === 'pt' ? 'text-teal font-medium' : 'hover:text-teal'}>PT</a>
-    </div>
-  </nav>
 </header>
-
-<script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
-
-  function setOpen(open: boolean) {
-    toggle?.setAttribute('aria-expanded', String(open));
-    menu?.classList.toggle('hidden', !open);
-    menu?.classList.toggle('flex', open);
-    iconOpen?.classList.toggle('hidden', open);
-    iconClose?.classList.toggle('hidden', !open);
-  }
-
-  toggle?.addEventListener('click', () => {
-    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-  });
-
-  menu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => setOpen(false));
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setOpen(false);
-  });
-</script>
