@@ -1,6 +1,6 @@
 # Roadmap — Magda Kaspary Digital Ecosystem
 
-_Last updated: 2026-08-10_
+_Last updated: 2026-08-11_
 
 One Astro repo, one Cloudflare project, two hostnames: **magdakaspary.com** (personal brand) and **interdisciplinarist.com** (professional content & product funnel). Beehiiv handles email and subscriber management. Everything else is custom.
 
@@ -15,7 +15,8 @@ Deployment note: this project deploys via **Cloudflare Workers** (Workers Builds
 | Sprint 1 — launch-readiness (S1–S5) | ✅ **Done, merged, live** on magdakaspary.com |
 | Sprint 2 — content fills (S6–S10) | ⬜ Not started — blocked on Magda's writing |
 | Sprint 3 — interdisciplinarist.com routing (S11–S17) | 🟡 **Code done, in PR #2, awaiting your review + one manual step (S11)** |
-| Sprint 4 — freemium layer (S18–S21) | ⬜ Not started |
+| Test/staging environment | 🟡 **Code ready on `staging` branch, waiting on you to create the Cloudflare staging Worker project (A3–A5)** |
+| Sprint 4 — freemium layer (S18–S21) | 🟡 **S18 + S21 code done, in PR #3 (stacked on PR #2), awaiting review + Beehiiv secrets. S19/S20 not started.** |
 | Sprint 5 — premium + payments (S22–S26) | ⬜ Not started |
 | Sprint 6 — polish + launch (S27–S30) | ⬜ Not started |
 | New backlog (added this session) | ⬜ Favicon/logo, social card testing — see below |
@@ -31,7 +32,12 @@ These are the only things blocking progress that require you specifically (dashb
 | # | Action | Why it's on you | Unblocks |
 |---|---|---|---|
 | **A1** | **Review & merge PR #2**: [github.com/lkaspary/magda-web/pull/2](https://github.com/lkaspary/magda-web/pull/2) | Touches the shared `Layout.astro` and adds a site-wide `middleware.ts`. It's been verified against Cloudflare's own preview builds (existing pages unaffected, new `/inter/*` pages render, 404s work), but I can't merge PRs myself. | Everything else in Sprint 3 |
+| **A1b** | **Review & merge PR #3** (after A1): [github.com/lkaspary/magda-web/pull/3](https://github.com/lkaspary/magda-web/pull/3) — Beehiiv article gating (S18/S21). Stacked on PR #2 so the diff is scoped to just this session's work; retarget it to `main` once PR #2 lands. | Adds a new server-side integration (`/api/subscribe`) and a real behavior change (gated article content) | Sprint 4 completing |
 | **A2 (S11)** | **Add `interdisciplinarist.com` as a custom domain** in Cloudflare dashboard → Workers & Pages → magda-web → Settings → Domains & Routes. Nameservers are already on Cloudflare (from earlier setup), so this should just be adding the domain and letting SSL auto-provision. | Needs your Cloudflare dashboard access | Real-domain testing of the interdisciplinarist routing (see caveat below) |
+| **A3** | **Create a staging Cloudflare Worker project** connected to the same GitHub repo, production branch set to `staging` (already pushed and up to date with `main` + PR #2 + PR #3's branches). Zero-config, same framework preset as the existing `magda-web` project — no `wrangler.toml` needed. | Needs your Cloudflare dashboard access | A real, durable test environment for newsletters/gating/payments instead of relying on ephemeral PR preview URLs |
+| **A4** | **Add two custom domains** to the new staging Worker: `staging.magdakaspary.com` and `staging.interdisciplinarist.com`. Both zones are already on Cloudflare. The second one is what actually exercises the interdisciplinarist hostname-rewrite logic end-to-end (the middleware checks for `interdisciplinarist.com` or a subdomain of it) — closes the A2 testing caveat below without touching the real interdisciplinarist.com domain. | Needs your Cloudflare dashboard access | End-to-end testing of routing + gating on real hostnames |
+| **A5** | **Create a Beehiiv test publication** and set 4 secrets across the two Worker projects (Settings → Variables and Secrets on each): `BEEHIIV_API_KEY` + `BEEHIIV_PUBLICATION_ID` on **production** `magda-web` (your real publication's values — these don't exist yet, today's Beehiiv usage is client-side embed only) and the same two secret names on the **staging** project (the test publication's values instead). | Needs Beehiiv dashboard + Cloudflare dashboard access | Testing PR #3's gating/subscribe flow without touching real subscribers, and turning on the real integration once merged |
+| **A6** | **Decide what to do with PR #1** — [github.com/lkaspary/magda-web/pull/1](https://github.com/lkaspary/magda-web/pull/1), "Add Cloudflare Workers configuration." This is a stale PR auto-opened by Cloudflare's own "Wrangler autoconfig" bot back in April, before Sprint 1 even started — nothing from this project touched it. It proposes committing a `wrangler.jsonc` to the repo (with `npx wrangler deploy` as the deploy command). That conflicts with the zero-config setup this whole roadmap assumes (see the Deployment note at the top), and since you're about to run **two** Worker projects off this repo (production + staging, A3), a single committed `wrangler.jsonc` could affect both unless it's written carefully — not something to merge on autopilot. Options: close it (keep the current zero-config setup, simplest), or merge it and let me adapt the staging setup around it (adds a config file to maintain, gains version-controlled build/deploy commands). No functional difference today either way — purely a "do you want this eventually or not" call. | Just needs a decision — either close it or tell me to merge + adapt around it | Keeps the repo's deployment story unambiguous before Sprint 5 adds more moving parts (Stripe webhooks, R2) |
 | **M1** | Decide the first assessment topic/audience/outcome | Only you and Magda can decide this | Sprint 4 (S19) |
 | **M2** | Write the interdisciplinarist.com positioning statement | The live landing page (in PR #2) currently uses placeholder copy pulled from the About page's "stopped moving between worlds..." line — it reads fine but isn't final | Replacing placeholder hero copy |
 | **M3** | First 2–3 professional articles for interdisciplinarist.com | Content only Magda can write | Sprint 3 content (the `articles` collection exists and works — it's empty) |
@@ -50,7 +56,8 @@ These are the only things blocking progress that require you specifically (dashb
 | **New-1** | **Replace the favicon** | `public/favicon.svg` is still the default Astro rocket logo. Needs a real brand mark (monogram or icon) matching the teal/serif design system. Flagged by you, not started. |
 | S6–S9 | Content fills | Still blocked on Magda's writing — nothing for Claude Code to do until essays exist |
 | S10 | Wire homepage idea cards to real content | Blocked on S6–S9 |
-| S18–S26 | Freemium/premium layer, assessments, payments | Architecturally scoped in the Tooling section below, not started |
+| S19/S20 | Free assessment MVP + downloadable resource | S18's gate component (in PR #3) is reusable for both — S19 also needs a React (or similar) island added to the project first |
+| S22–S26 | Stripe payments, premium gating, workbooks | Architecturally scoped in the Tooling section below, not started |
 | S27–S30 | Polish + launch | Not started |
 
 **Deferred by your request**: testing OG/Twitter/Facebook share cards (Twitter Card Validator, Facebook Sharing Debugger) — you asked to hold this until logins/accounts are figured out, so it's parked rather than dropped. Tracked as **New-2**.
@@ -91,6 +98,34 @@ All five tasks shipped in commit `ac66eed` on `main`, live on magdakaspary.com, 
 
 ---
 
+## Sprint 4 (partial) — Beehiiv gating 🟡 IN PR #3
+
+> Stacked on PR #2 (depends on the `articles` collection/pages it introduces). See **A1b** above.
+
+| # | Task | Status |
+|---|---|---|
+| S18 | Email-gated content component | ✅ Built — `GatedContent.astro`. `free` tier renders untouched; `preview`/`premium` fade the content after ~16rem and show the article's `excerpt` + a subscribe form. `premium` is a placeholder gate (no payment check) until S23. |
+| S21 | Beehiiv subscriber tagging | ✅ Built — every gate submit hits a new shared `POST /api/subscribe`, which tags the subscriber via Beehiiv's `utm_source` field (`article-reader` for now; `assessment-taker`/`workbook-sample` are already typed and ready for S19/S20 to reuse the same endpoint). |
+| S19 | Free assessment MVP | ⬜ Not started — needs a React (or similar) island added to the project first |
+| S20 | Free downloadable resource | ⬜ Not started — mostly asset/content work once S18 exists |
+
+**Bug found and fixed along the way**: `src/middleware.ts`'s interdisciplinarist rewrite caught `/api/*` paths too, which would have silently 404'd `/api/subscribe` (and later S22's Stripe webhook, S19's assessment-scoring route) whenever called from the interdisciplinarist hostname. Latent since Sprint 3 shipped no real API calls from that hostname — now excluded from the rewrite.
+
+**Beehiiv API note**: verified against Beehiiv's current v2 docs during implementation rather than assumed — there's no native "tag" field on subscription creation. `custom_fields` requires the field to already exist in the Beehiiv dashboard; `utm_source` is built-in and needs no setup, so that's what content-source tagging uses. If you later want native Beehiiv tags (not just UTM-based segments), that's a Beehiiv-dashboard automation (trigger on `utm_source` → add tag), not a code change.
+
+---
+
+## Testing environment 🟡 CODE READY, AWAITING A3–A5
+
+A second, independent Cloudflare Worker project (not `wrangler.toml` environments — a fully separate zero-config project pointed at a different branch, per Cloudflare's supported multi-project-per-repo pattern) tracking the `staging` branch instead of `main`. Same repo, same build process, own domains, own secrets — zero risk to the production `magda-web` project's config.
+
+- `staging` branch is pushed and currently contains: `main` + PR #2's Sprint 3 work + PR #3's Sprint 4 gating work + two staging-only dummy articles (`staging-test-free.md`, `staging-test-preview.md`, one per tier) for click-testing the gate. These two fixture articles are **staging-only** — they were committed directly to `staging`, not to either PR branch, so they won't reach production.
+- Once you do **A3** (create the project) and **A4** (attach `staging.magdakaspary.com` + `staging.interdisciplinarist.com`), every future push to `staging` deploys automatically, same as `main` does today for production.
+- **A5** wires up a Beehiiv test publication so staging signups never touch real subscribers — same secret names as production (`BEEHIIV_API_KEY`, `BEEHIIV_PUBLICATION_ID`), different values, set independently on each Worker project's dashboard.
+- Recommended flow going forward: land new Sprint 4/5 feature branches on `staging` first (as this session did), click-test on the real staging domains, then merge to `main` once you're happy — instead of trusting PR preview builds straight into production.
+
+---
+
 ## Everything else (Sprints 2, 4, 5, 6) — unchanged from original plan
 
 ### Sprint 2: Content fills (Magda writes → Leandro commits)
@@ -107,10 +142,10 @@ All five tasks shipped in commit `ac66eed` on `main`, live on magdakaspary.com, 
 
 | # | Task | Est. | Notes |
 |---|---|---|---|
-| S18 | Email-gated content component | 3h | Preview + blur behind Beehiiv subscribe form |
+| S18 | Email-gated content component | 3h | ✅ Done, in PR #3 — see "Sprint 4 (partial)" section above |
 | S19 | Free assessment MVP | 4–6h | React island, scored questionnaire, Beehiiv API tagging on email capture |
 | S20 | Free downloadable resource | 1h | PDF sample, gated behind S18's component |
-| S21 | Beehiiv subscriber tagging | 1h | Tag by content accessed: `article-reader`, `assessment-taker`, `workbook-sample` |
+| S21 | Beehiiv subscriber tagging | 1h | ✅ Done, in PR #3 — see "Sprint 4 (partial)" section above |
 
 ### Sprint 5: Premium content + payments (Leandro — Claude Code)
 
@@ -179,23 +214,28 @@ src/
 ├── components/
 │   ├── Header.astro / Footer.astro          # magdakaspary.com — EXISTS
 │   ├── HeaderInter.astro / FooterInter.astro # interdisciplinarist.com — BUILT (PR #2)
-│   ├── EssayCard.astro / TagCard.astro       # shared — EXISTS
+│   ├── EssayCard.astro / TagCard.astro       # shared — EXISTS (EssayCard now takes optional `tier` badge, PR #3)
+│   ├── GatedContent.astro                    # BUILT (PR #3) — S18 email gate for preview/premium tiers
 ├── content/
 │   ├── writing/en/, writing/pt/              # EXISTS, empty (blocked on S6/S7)
-│   ├── articles/                             # BUILT (PR #2), empty (blocked on M3)
+│   ├── articles/                             # BUILT (PR #2), empty on main (blocked on M3)
+│   │                                          # on `staging` only: 2 dummy test-fixture articles for gate QA
+├── lib/
+│   └── beehiiv.ts                            # BUILT (PR #3) — server-side subscribe + tag helper
 ├── layouts/
 │   └── Layout.astro                          # UPDATED (PR #2) — domain-aware canonical/OG/hreflang
-├── middleware.ts                             # BUILT (PR #2) — hostname detection + rewrite
+├── middleware.ts                             # BUILT (PR #2), FIXED (PR #3) — hostname detection + rewrite, excludes /api
 ├── env.d.ts                                  # BUILT (PR #2) — Astro.locals.site typing
 ├── pages/
 │   ├── en/, pt/                              # EXISTS — magdakaspary.com
 │   ├── inter/                                # BUILT (PR #2)
 │   │   ├── index.astro                       # landing page
-│   │   ├── articles/index.astro, [slug].astro
+│   │   ├── articles/index.astro, [slug].astro # [slug] gates preview/premium via GatedContent (PR #3)
 │   │   ├── assessments/index.astro           # stub
 │   │   ├── workbooks/index.astro             # stub
 │   ├── api/
 │   │   ├── contact.ts                        # EXISTS
+│   │   ├── subscribe.ts                      # BUILT (PR #3) — Beehiiv subscribe + tag endpoint
 │   │   ├── checkout.ts, webhook.ts           # NOT BUILT — Sprint 5
 │   │   ├── assessment-save.ts                # NOT BUILT — Sprint 4
 │   └── 404.astro                             # BUILT (Sprint 1) — bilingual, detects lang from attempted URL
@@ -206,14 +246,16 @@ src/
 ## Hostname routing — how it actually works now
 
 ```typescript
-// src/middleware.ts (built, in PR #2)
+// src/middleware.ts (built in PR #2, fixed in PR #3)
 const host = (ctx.request.headers.get('host') || '').split(':')[0].toLowerCase();
 const isInter = host === 'interdisciplinarist.com' || host.endsWith('.interdisciplinarist.com');
 
 ctx.locals.site = isInter ? 'interdisciplinarist' : 'magda';
 
 // On the real domain, serve /inter/* content at the root path so URLs stay clean.
-if (isInter && !ctx.url.pathname.startsWith('/inter')) {
+// /api is excluded — API routes aren't part of the /inter tree and must resolve
+// at their real path (PR #3 fix: this was silently 404ing /api/subscribe).
+if (isInter && !ctx.url.pathname.startsWith('/inter') && !ctx.url.pathname.startsWith('/api')) {
   const target = ctx.url.pathname === '/' ? '/inter' : `/inter${ctx.url.pathname}`;
   return ctx.rewrite(target);
 }
@@ -237,6 +279,7 @@ One important limit discovered building this: `Layout.astro`'s canonical-URL log
 
 ### Integrations
 - ✅ Beehiiv newsletter embedded across both sites now (form `ab3b485e`)
+- 🟡 Beehiiv server-side API (subscribe + tag by source) built in PR #3 — needs `BEEHIIV_API_KEY`/`BEEHIIV_PUBLICATION_ID` secrets (A5) before it's live
 - ✅ Contact form via Resend (`/api/contact.ts`)
 - ✅ Cloudflare Web Analytics enabled (magdakaspary.com only so far — S29 adds interdisciplinarist.com)
 - ✅ Cal.com booking link on Work and Contact pages
