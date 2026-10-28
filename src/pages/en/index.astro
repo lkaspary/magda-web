@@ -3,7 +3,14 @@ export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { PenLine, Mic, Handshake } from '@lucide/astro';
+import { PenLine, Compass } from '@lucide/astro';
+import { getCollection } from 'astro:content';
+
+// Homepage teasers come from essays marked featured: true (newest first, max 3).
+// If none exist yet, the original placeholder cards below are shown instead.
+const featured = (await getCollection('writingEn', ({ data }) => data.featured))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
 ---
 <Layout title="Magda Kaspary" description="The real question has never been what technology can do, but what kind of human organization we choose to build. I work with leaders ready to take that question seriously." lang="en">
   <Header slot="header" />
@@ -13,7 +20,7 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
     <div class="hero-text">
       <h1 class="hero-name">Magda Kaspary</h1>
       <p class="hero-sub">The real question has never been what technology can do, but what kind of human organization we choose to build. I work with leaders ready to take that question seriously.</p>
-      <a href="/en/contact" class="btn-primary">Work with Magda</a>
+      <a href="/en/about" class="btn-primary">Read Magda’s story</a>
     </div>
     <div class="hero-photo">
       <img src="/images/nature-redwood.jpg" alt="" />
@@ -24,27 +31,37 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
   <section class="max-w-[68rem] mx-auto px-8 py-16 border-b border-stone">
     <h2 class="section-label">Ideas &amp; Writing</h2>
     <div class="ideas-grid">
-      <div class="idea-card">
-        <h3>The Culture You Didn't Design</h3>
-        <p>Every organization has a culture — the question is whether it was shaped on purpose or by accident.</p>
-        <span class="idea-link-disabled">Coming soon ↗</span>
-      </div>
-      <div class="idea-card">
-        <h3>What Intercultural Intelligence Actually Is</h3>
-        <p>It's not about knowing other cultures. It's about understanding how your own shapes everything you see.</p>
-        <span class="idea-link-disabled">Coming soon ↗</span>
-      </div>
-      <div class="idea-card">
-        <h3>Why the Best Leaders Ask Different Questions</h3>
-        <p>The leaders who create the most meaningful change aren't the ones with the best answers — they're the ones with better questions.</p>
-        <span class="idea-link-disabled">Coming soon ↗</span>
-      </div>
+      {featured.length > 0 ? featured.map((e) => (
+        <div class="idea-card">
+          <h3>{e.data.title}</h3>
+          <p>{e.data.excerpt}</p>
+          <a class="idea-link" href={e.data.externalUrl ?? `/en/writing/${e.id}/`}>Read →</a>
+        </div>
+      )) : (
+        <>
+        <div class="idea-card">
+          <h3>The Culture You Didn't Design</h3>
+          <p>Every organization has a culture — the question is whether it was shaped on purpose or by accident.</p>
+          <span class="idea-link-disabled">Coming soon ↗</span>
+        </div>
+        <div class="idea-card">
+          <h3>What Intercultural Intelligence Actually Is</h3>
+          <p>It's not about knowing other cultures. It's about understanding how your own shapes everything you see.</p>
+          <span class="idea-link-disabled">Coming soon ↗</span>
+        </div>
+        <div class="idea-card">
+          <h3>Why the Best Leaders Ask Different Questions</h3>
+          <p>The leaders who create the most meaningful change aren't the ones with the best answers — they're the ones with better questions.</p>
+          <span class="idea-link-disabled">Coming soon ↗</span>
+        </div>
+        </>
+      )}
     </div>
   </section>
 
   <!-- THREE-COLUMN PANEL -->
   <section class="border-t border-b border-stone">
-    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="card">
         <PenLine class="panel-icon" size={24} stroke-width={1.5} />
         <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Writes</h3>
@@ -52,16 +69,10 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
         <a href="/en/writing" class="panel-link">Read the essays →</a>
       </div>
       <div class="card">
-        <Mic class="panel-icon" size={24} stroke-width={1.5} />
-        <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Speaks</h3>
-        <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Keynotes and workshops on intercultural intelligence, leadership, and building organizations that honor human complexity.</p>
-        <a href="/en/speaking" class="panel-link">Book a talk →</a>
-      </div>
-      <div class="card">
-        <Handshake class="panel-icon" size={24} stroke-width={1.5} />
-        <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Works With People</h3>
-        <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Coaching and advisory work with leaders navigating the hardest questions in their organizations — the human ones.</p>
-        <a href="/en/work" class="panel-link">Work with Magda →</a>
+        <Compass class="panel-icon" size={24} stroke-width={1.5} />
+        <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Offers Tools</h3>
+        <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Free self-assessments for leaders and teams. The first one, The Five Accounts Check, is on its way.</p>
+        <a href="/en/tools" class="panel-link">See what’s coming →</a>
       </div>
     </div>
   </section>
@@ -80,7 +91,7 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
   </section>
 
   <!-- NEWSLETTER -->
-  <section class="bg-teal">
+  <section id="newsletter" class="bg-teal">
     <div class="newsletter-inner max-w-[68rem] mx-auto px-8">
       <div>
         <h2 class="font-serif text-[2rem] font-light text-white mb-2">Thinking across disciplines, in your inbox.</h2>
@@ -278,4 +289,11 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
     .newsletter-inner { flex-direction: column; align-items: flex-start; }
     .newsletter-embed { width: 100%; }
   }
+  .idea-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-teal);
+    text-decoration: none;
+  }
+  .idea-link:hover { color: var(--color-teal-dark); }
 </style>

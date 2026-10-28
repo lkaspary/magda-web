@@ -3,7 +3,14 @@ export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { PenLine, Mic, Handshake } from '@lucide/astro';
+import { PenLine, Compass } from '@lucide/astro';
+import { getCollection } from 'astro:content';
+
+// Homepage teasers come from essays marked featured: true (newest first, max 3).
+// If none exist yet, the original placeholder cards below are shown instead.
+const featured = (await getCollection('writingPt', ({ data }) => data.featured))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
 ---
 <Layout title="Magda Kaspary" description="A verdadeira questão nunca foi o que a tecnologia pode fazer, mas que tipo de organização humana escolhemos construir. Trabalho com líderes prontos para levar essa pergunta a sério." lang="pt">
   <Header slot="header" />
@@ -13,7 +20,7 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
     <div class="hero-text">
       <h1 class="hero-name">Magda Kaspary</h1>
       <p class="hero-sub">A verdadeira questão nunca foi o que a tecnologia pode fazer, mas que tipo de organização humana escolhemos construir. Trabalho com líderes prontos para levar essa pergunta a sério.</p>
-      <a href="/pt/contato" class="btn-primary">Trabalhe com Magda</a>
+      <a href="/pt/sobre" class="btn-primary">Conheça a história da Magda</a>
     </div>
     <div class="hero-photo">
       <img src="/images/nature-redwood.jpg" alt="" />
@@ -24,27 +31,37 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
   <section class="max-w-[68rem] mx-auto px-8 py-16 border-b border-stone">
     <h2 class="section-label">Ideias &amp; Escrita</h2>
     <div class="ideas-grid">
-      <div class="idea-card">
-        <h3>A Cultura Que Você Não Projetou</h3>
-        <p>Toda organização tem uma cultura — a questão é se ela foi construída intencionalmente ou por acaso.</p>
-        <span class="idea-link-disabled">Em breve ↗</span>
-      </div>
-      <div class="idea-card">
-        <h3>O Que É de Fato a Inteligência Intercultural</h3>
-        <p>Não se trata de conhecer outras culturas. Trata-se de entender como a sua própria molda tudo o que você enxerga.</p>
-        <span class="idea-link-disabled">Em breve ↗</span>
-      </div>
-      <div class="idea-card">
-        <h3>Por Que os Melhores Líderes Fazem Perguntas Diferentes</h3>
-        <p>Os líderes que geram as mudanças mais significativas não são os que têm as melhores respostas — são os que fazem perguntas melhores.</p>
-        <span class="idea-link-disabled">Em breve ↗</span>
-      </div>
+      {featured.length > 0 ? featured.map((e) => (
+        <div class="idea-card">
+          <h3>{e.data.title}</h3>
+          <p>{e.data.excerpt}</p>
+          <a class="idea-link" href={e.data.externalUrl ?? `/pt/escrita/${e.id}/`}>Ler →</a>
+        </div>
+      )) : (
+        <>
+        <div class="idea-card">
+          <h3>A Cultura Que Você Não Projetou</h3>
+          <p>Toda organização tem uma cultura — a questão é se ela foi construída intencionalmente ou por acaso.</p>
+          <span class="idea-link-disabled">Em breve ↗</span>
+        </div>
+        <div class="idea-card">
+          <h3>O Que É de Fato a Inteligência Intercultural</h3>
+          <p>Não se trata de conhecer outras culturas. Trata-se de entender como a sua própria molda tudo o que você enxerga.</p>
+          <span class="idea-link-disabled">Em breve ↗</span>
+        </div>
+        <div class="idea-card">
+          <h3>Por Que os Melhores Líderes Fazem Perguntas Diferentes</h3>
+          <p>Os líderes que geram as mudanças mais significativas não são os que têm as melhores respostas — são os que fazem perguntas melhores.</p>
+          <span class="idea-link-disabled">Em breve ↗</span>
+        </div>
+        </>
+      )}
     </div>
   </section>
 
   <!-- THREE-COLUMN PANEL -->
   <section class="border-t border-b border-stone">
-    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="card">
         <PenLine class="panel-icon" size={24} stroke-width={1.5} />
         <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Escreve</h3>
@@ -52,16 +69,10 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
         <a href="/pt/escrita" class="panel-link">Leia os ensaios →</a>
       </div>
       <div class="card">
-        <Mic class="panel-icon" size={24} stroke-width={1.5} />
-        <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Palestras</h3>
-        <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Palestras e workshops sobre inteligência intercultural, liderança e a construção de organizações que honram a complexidade humana.</p>
-        <a href="/pt/palestras" class="panel-link">Agende uma palestra →</a>
-      </div>
-      <div class="card">
-        <Handshake class="panel-icon" size={24} stroke-width={1.5} />
-        <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Trabalha com Pessoas</h3>
-        <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Coaching e trabalho consultivo com líderes navegando as perguntas mais difíceis de suas organizações — as humanas.</p>
-        <a href="/pt/trabalho" class="panel-link">Trabalhe com Magda →</a>
+        <Compass class="panel-icon" size={24} stroke-width={1.5} />
+        <h3 class="font-serif text-[1.4rem] font-normal mb-3 text-ink">Oferece Ferramentas</h3>
+        <p class="text-[0.9rem] text-ink-muted leading-[1.65] mb-4">Autoavaliações gratuitas para líderes e equipes. A primeira, o Check das Cinco Contas, está a caminho.</p>
+        <a href="/pt/ferramentas" class="panel-link">Ver o que vem por aí →</a>
       </div>
     </div>
   </section>
@@ -80,7 +91,7 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
   </section>
 
   <!-- NEWSLETTER -->
-  <section class="bg-teal">
+  <section id="newsletter" class="bg-teal">
     <div class="newsletter-inner max-w-[68rem] mx-auto px-8">
       <div>
         <h2 class="font-serif text-[2rem] font-light text-white mb-2">Pensamento entre disciplinas, na sua caixa de entrada.</h2>
@@ -278,4 +289,11 @@ import { PenLine, Mic, Handshake } from '@lucide/astro';
     .newsletter-inner { flex-direction: column; align-items: flex-start; }
     .newsletter-embed { width: 100%; }
   }
+  .idea-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-teal);
+    text-decoration: none;
+  }
+  .idea-link:hover { color: var(--color-teal-dark); }
 </style>
