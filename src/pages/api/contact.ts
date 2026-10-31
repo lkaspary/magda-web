@@ -28,6 +28,7 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ error: 'Server misconfiguration: missing API key.' }, 500);
   }
 
+  const esc = (v: string) => v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   const resend = new Resend(apiKey);
   const topicLabel = TOPIC_LABELS[topic] ?? topic;
 
@@ -35,14 +36,14 @@ export const POST: APIRoute = async ({ request }) => {
     from: 'Magda Kaspary <hello@magdakaspary.com>',
     to: ['magdakaspary@outlook.com'],
     replyTo: email,
-    subject: `New message from ${name} — ${topicLabel}`,
+    subject: `New message from ${name.replace(/[\r\n]/g, ' ')} — ${topicLabel}`,
     html: `
       <table style="font-family:sans-serif;font-size:15px;line-height:1.7;color:#2c2b29;max-width:580px;border-collapse:collapse">
         <tr><td style="padding:0 0 20px">
           <h2 style="margin:0;font-size:20px;color:#1b6b7a">New contact form submission</h2>
         </td></tr>
-        <tr><td style="padding:4px 0"><strong>Name:</strong> ${name}</td></tr>
-        <tr><td style="padding:4px 0"><strong>Email:</strong> <a href="mailto:${email}" style="color:#1b6b7a">${email}</a></td></tr>
+        <tr><td style="padding:4px 0"><strong>Name:</strong> ${esc(name)}</td></tr>
+        <tr><td style="padding:4px 0"><strong>Email:</strong> <a href="mailto:${esc(email)}" style="color:#1b6b7a">${esc(email)}</a></td></tr>
         <tr><td style="padding:4px 0"><strong>Inquiry type:</strong> ${topicLabel}</td></tr>
         <tr><td style="padding:20px 0 4px"><strong>Message:</strong></td></tr>
         <tr><td style="padding:8px 16px;background:#f7f5f2;border-left:3px solid #1b6b7a;white-space:pre-wrap">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</td></tr>

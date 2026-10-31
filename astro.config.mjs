@@ -9,8 +9,8 @@ export default defineConfig({
   site: 'https://magdakaspary.com',
   // Pages taken offline 2026-10-27 (files kept in src/offline-pages/). Remove a line to bring a page back.
   redirects: {
-    '/en/work': '/en/', '/en/speaking': '/en/', '/en/contact': '/en/',
-    '/pt/trabalho': '/pt/', '/pt/palestras': '/pt/', '/pt/contato': '/pt/',
+    '/en/work': '/en/', '/en/speaking': '/en/',
+    '/pt/trabalho': '/pt/', '/pt/palestras': '/pt/',
   },
   vite: {
     plugins: [tailwindcss()]
