@@ -48,6 +48,7 @@ import Footer from '../../components/Footer.astro';
       <section>
         <h2>Serviços de terceiros</h2>
         <p>Este site utiliza os seguintes serviços de terceiros, cada um com sua própria política de privacidade:</p>
+        <div class="table-scroll">
         <table>
           <thead>
             <tr><th>Serviço</th><th>Finalidade</th><th>Política</th></tr>
@@ -59,6 +60,7 @@ import Footer from '../../components/Footer.astro';
             <tr><td>Cal.com</td><td>Agendamento de chamadas de descoberta</td><td><a href="https://cal.com/privacy" target="_blank" rel="noopener">cal.com/privacy</a></td></tr>
           </tbody>
         </table>
+        </div>
       </section>
 
       <section>
@@ -197,4 +199,5 @@ import Footer from '../../components/Footer.astro';
     vertical-align: top;
   }
   .prose-body tr:last-child td { border-bottom: none; }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 </style>

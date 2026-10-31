@@ -48,6 +48,7 @@ import Footer from '../../components/Footer.astro';
       <section>
         <h2>Third-party services</h2>
         <p>This site uses the following third-party services, each with their own privacy policy:</p>
+        <div class="table-scroll">
         <table>
           <thead>
             <tr><th>Service</th><th>Purpose</th><th>Policy</th></tr>
@@ -59,6 +60,7 @@ import Footer from '../../components/Footer.astro';
             <tr><td>Cal.com</td><td>Scheduling discovery calls (if you use the booking link)</td><td><a href="https://cal.com/privacy" target="_blank" rel="noopener">cal.com/privacy</a></td></tr>
           </tbody>
         </table>
+        </div>
       </section>
 
       <section>
@@ -197,4 +199,5 @@ import Footer from '../../components/Footer.astro';
     vertical-align: top;
   }
   .prose-body tr:last-child td { border-bottom: none; }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 </style>
