@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
 import Footer from '../components/Footer.astro';
 import { getLangFromUrl } from '../i18n/utils';
 
@@ -57,7 +58,7 @@ const c = copy[lang];
         </p>
       </div>
       <div class="flex-shrink-0 min-w-[280px]">
-        <script is:inline async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form={c.beehiivForm}></script>
+        <NewsletterForm lang={lang} />
       </div>
     </div>
   </section>

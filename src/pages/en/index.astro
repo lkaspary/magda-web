@@ -2,6 +2,7 @@
 export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
 import Footer from '../../components/Footer.astro';
 import { PenLine, Compass } from '@lucide/astro';
 import { getCollection } from 'astro:content';
@@ -98,7 +99,7 @@ const featured = (await getCollection('writingEn', ({ data }) => data.featured))
         <p class="text-[0.95rem] leading-[1.6] max-w-[38rem]" style="color: rgba(255,255,255,0.75)">Essays on leadership, culture, and the art of building organizations that are both high-performing and deeply human — a few times a month.</p>
       </div>
       <div class="newsletter-embed">
-        <script is:inline async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="ab3b485e-a855-4dce-8ab9-31cddf8cabaa"></script>
+        <NewsletterForm lang="en" />
       </div>
     </div>
   </section>

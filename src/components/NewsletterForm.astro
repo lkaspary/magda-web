@@ -1,0 +1,36 @@
+---
+/**
+ * Beehiiv newsletter signup, EN or PT.
+ * Loads Beehiiv's v3 form page in a fixed-height iframe. We don't use Beehiiv's
+ * loader.js (it sizes the frame by postMessage and can stay at 0px), nor the old
+ * embeds.beehiiv.com/<id> URLs (they return "Not found" since Beehiiv's form update).
+ * Each language has its own form, so Beehiiv can tell EN and PT subscribers apart
+ * ("Embed source" in segments).
+ */
+interface Props { lang: 'en' | 'pt'; height?: number }
+const { lang, height = 300 } = Astro.props;
+const FORM = {
+  en: 'ab3b485e-a855-4dce-8ab9-31cddf8cabaa',
+  pt: '34365e7e-c1f7-471a-9788-1eceb366c708',
+};
+const title = lang === 'en' ? 'Newsletter signup' : 'Inscrição na newsletter';
+---
+<iframe
+  class="newsletter-form"
+  title={title}
+  src={`https://subscribe-forms.beehiiv.com/v3/forms/${FORM[lang]}`}
+  height={height}
+  loading="lazy"
+  scrolling="no"
+></iframe>
+
+<style>
+  .newsletter-form {
+    display: block;
+    width: 100%;
+    max-width: 32rem;
+    border: 0;
+    border-radius: 6px;
+    background: #fff;
+  }
+</style>
