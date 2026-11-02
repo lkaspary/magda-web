@@ -13,14 +13,14 @@ const featured = (await getCollection('writingEn', ({ data }) => data.featured))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
 ---
-<Layout title="Magda Kaspary" description="The real question has never been what technology can do, but what kind of human organization we choose to build. I work with leaders ready to take that question seriously." lang="en">
+<Layout title="Magda Kaspary" description="The real question has never been what technology can do, but what kind of human organization we choose to build." lang="en">
   <Header slot="header" />
 
   <!-- HERO -->
   <section class="hero border-b border-stone">
     <div class="hero-text">
       <h1 class="hero-name">Magda Kaspary</h1>
-      <p class="hero-sub">The real question has never been what technology can do, but what kind of human organization we choose to build. I work with leaders ready to take that question seriously.</p>
+      <p class="hero-sub">The real question has never been what technology can do, but what kind of human organization we choose to build.</p>
       <a href="/en/about" class="btn-primary">Read Magda’s story</a>
     </div>
     <div class="hero-photo">

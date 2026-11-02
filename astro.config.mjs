@@ -11,6 +11,8 @@ export default defineConfig({
   redirects: {
     '/en/work': '/en/', '/en/speaking': '/en/',
     '/pt/trabalho': '/pt/', '/pt/palestras': '/pt/',
+    // Contact taken offline 2026-11-01: Magda isn't taking coaching or speaking requests for now.
+    '/en/contact': '/en/', '/pt/contato': '/pt/',
   },
   vite: {
     plugins: [tailwindcss()]
