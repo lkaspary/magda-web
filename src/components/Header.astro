@@ -4,23 +4,107 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const base = `/${lang}`;
 const r = routes[lang];
+// Magda's professional writing lives on the Interdisciplinarist hub, in the same language.
+const hubHref = `https://interdisciplinarist.com/${lang}/`;
+const links = [
+  { href: base, label: t.nav.home },
+  { href: `${base}/${r.about}`, label: t.nav.about },
+  { href: `${base}/${r.writing}`, label: t.nav.writing },
+  { href: `${base}/${r.tools}`, label: t.nav.tools },
+];
+const enHref = getAlternatePath(Astro.url.pathname, 'en');
+const ptHref = getAlternatePath(Astro.url.pathname, 'pt');
 ---
 <header class="w-full border-b border-stone bg-cream">
   <div class="max-w-[68rem] mx-auto px-6 py-5 flex items-center justify-between">
     <a href={base} class="font-serif text-xl text-ink hover:text-teal transition-colors">
       Magda Kaspary
     </a>
-    <nav class="hidden md:flex items-center gap-8">
-      <a href={base}                    class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.home}</a>
-      <a href={`${base}/${r.about}`}    class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.about}</a>
-      <a href={`${base}/${r.writing}`}  class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.writing}</a>
-      <a href={`${base}/${r.tools}`}    class="text-sm text-ink-muted hover:text-teal transition-colors">{t.nav.tools}</a>
-      <a href={`${base}/${r.contact}`}  class="text-sm bg-teal text-white px-4 py-2 rounded hover:bg-teal-dark transition-colors">{t.nav.contact}</a>
+
+    <!-- Desktop -->
+    <nav class="hidden md:flex items-center gap-7">
+      {links.map((l) => (
+        <a href={l.href} class="text-sm text-ink-muted hover:text-teal transition-colors">{l.label}</a>
+      ))}
+      <a href={hubHref} class="text-sm text-teal hover:text-teal-dark transition-colors whitespace-nowrap">Interdisciplinarist&nbsp;↗</a>
+      <a href={`${base}/${r.contact}`} class="text-sm bg-teal text-white px-4 py-2 rounded hover:bg-teal-dark transition-colors">{t.nav.contact}</a>
       <div class="text-xs text-ink-muted flex items-center gap-1">
-        <a href={getAlternatePath(Astro.url.pathname, 'en')} class={lang === 'en' ? 'text-teal font-medium' : 'hover:text-teal'}>EN</a>
+        <a href={enHref} class={lang === 'en' ? 'text-teal font-medium' : 'hover:text-teal'}>EN</a>
         <span class="text-stone">|</span>
-        <a href={getAlternatePath(Astro.url.pathname, 'pt')} class={lang === 'pt' ? 'text-teal font-medium' : 'hover:text-teal'}>PT</a>
+        <a href={ptHref} class={lang === 'pt' ? 'text-teal font-medium' : 'hover:text-teal'}>PT</a>
       </div>
     </nav>
+
+    <!-- Phones: a simple menu that works without JavaScript -->
+    <details class="mobile-nav md:hidden">
+      <summary aria-label={lang === 'en' ? 'Menu' : 'Menu'}>
+        <span class="text-sm text-ink">Menu</span>
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </summary>
+      <nav class="mobile-panel">
+        {links.map((l) => (
+          <a href={l.href}>{l.label}</a>
+        ))}
+        <a href={hubHref} class="hub">Interdisciplinarist ↗</a>
+        <a href={`${base}/${r.contact}`} class="contact">{t.nav.contact}</a>
+        <div class="langs">
+          <a href={enHref} class={lang === 'en' ? 'on' : ''}>English</a>
+          <a href={ptHref} class={lang === 'pt' ? 'on' : ''}>Português</a>
+        </div>
+      </nav>
+    </details>
   </div>
 </header>
+
+<style>
+  .mobile-nav { position: relative; }
+  .mobile-nav summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    padding: 0.4rem 0;
+  }
+  .mobile-nav summary::-webkit-details-marker { display: none; }
+  .bars { display: grid; gap: 4px; }
+  .bars i { display: block; width: 20px; height: 2px; background: var(--color-ink); }
+  .mobile-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.75rem);
+    z-index: 50;
+    min-width: 15rem;
+    display: grid;
+    background: var(--color-cream);
+    border: 1px solid var(--color-stone);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(26, 25, 23, 0.08);
+    padding: 0.5rem;
+  }
+  .mobile-panel a {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    text-decoration: none;
+    border-radius: 6px;
+  }
+  .mobile-panel a:hover { background: var(--color-teal-light); }
+  .mobile-panel .hub { color: var(--color-teal); }
+  .mobile-panel .contact {
+    margin-top: 0.4rem;
+    background: var(--color-teal);
+    color: #fff;
+    text-align: center;
+  }
+  .mobile-panel .contact:hover { background: var(--color-teal-dark); }
+  .langs {
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.4rem;
+    border-top: 1px solid var(--color-stone);
+    padding-top: 0.4rem;
+  }
+  .langs a { flex: 1; text-align: center; font-size: 0.85rem; color: var(--color-ink-muted); }
+  .langs a.on { color: var(--color-teal); font-weight: 500; }
+</style>
