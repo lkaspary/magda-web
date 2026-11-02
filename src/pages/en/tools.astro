@@ -24,7 +24,7 @@ const lensDescriptions: Record<string, string> = {
 
     <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-stone">
       {lenses.map((lens) => (
-        <TagCard name={lens.name.en} description={lensDescriptions[lens.slug] ?? ''} meta="Coming soon" />
+        <TagCard name={lens.name.en} description={lensDescriptions[lens.slug] ?? ''} meta={lens.slug === 'professional' ? 'Coming to Interdisciplinarist' : 'Coming soon'} />
       ))}
     </div>
 

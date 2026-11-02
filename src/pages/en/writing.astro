@@ -35,12 +35,12 @@ const sections = lenses.map((lens) => {
     <div class="max-w-[68rem] mx-auto px-8 py-20 border-b border-stone">
       <p class="eyebrow">Writing</p>
       <h1 class="font-serif text-[3rem] font-normal leading-[1.1] text-ink mt-4 mb-6">Ideas, from two angles</h1>
-      <p class="text-[1.1rem] leading-[1.75] text-ink-muted max-w-[42rem]">Magda writes across two lenses: the personal and creative, and the professional. Some pieces live here; others are published on <a href="https://interdisciplinarist.com" class="teal-link">Interdisciplinarist</a>, her home for long-form thinking.</p>
+      <p class="text-[1.1rem] leading-[1.75] text-ink-muted max-w-[42rem]">Magda writes across two lenses: the personal and creative, and the professional. Some pieces live here; others are published on <a href="https://interdisciplinarist.com/en/" class="teal-link">Interdisciplinarist</a>, her home for long-form thinking.</p>
     </div>
 
     <div class="max-w-[68rem] mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-stone">
       {sections.map((s) => (
-        <TagCard name={s.name.en} description={s.description} meta={s.meta} href={`#${s.slug}`} />
+        <TagCard name={s.name.en} description={s.description} meta={s.slug === 'professional' ? 'On Interdisciplinarist ↗' : s.meta} href={s.slug === 'professional' ? 'https://interdisciplinarist.com/en/reading' : `#${s.slug}`} />
       ))}
     </div>
 
@@ -48,7 +48,9 @@ const sections = lenses.map((lens) => {
       <section id={s.slug} class="max-w-[68rem] mx-auto px-8 py-16 border-b border-stone">
         <h2 class="font-serif text-[1.9rem] font-normal text-ink mb-8">{s.name.en}</h2>
         {s.essays.length === 0 ? (
-          <p class="empty-state">No essays published yet in this lens. Subscribe below to know the moment new ones go live.</p>
+          s.slug === 'professional'
+            ? <p class="empty-state">Magda’s professional writing — leadership, intercultural development and systems thinking — lives on Interdisciplinarist. <a href="https://interdisciplinarist.com/en/reading" class="teal-link">Read on Interdisciplinarist ↗</a></p>
+            : <p class="empty-state">No essays published yet in this lens. Subscribe below to know the moment new ones go live.</p>
         ) : (
           <div class="essay-grid">
             {s.essays.map((entry) => (

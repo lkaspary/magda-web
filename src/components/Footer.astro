@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
     <div class="flex flex-col md:flex-row justify-between items-start gap-8">
       <div>
         <p class="font-serif text-lg text-ink mb-2">Magda Kaspary</p>
-        <a href="https://interdisciplinarist.com" class="text-sm text-teal hover:underline">{t.footer.hub}</a>
+        <a href={`https://interdisciplinarist.com/${lang}/`} class="text-sm text-teal hover:underline">{t.footer.hub}</a>
       </div>
       <nav class="flex flex-wrap gap-6 text-sm text-ink-muted">
         <a href={`${base}/${r.about}`}    class="hover:text-teal">{t.nav.about}</a>
