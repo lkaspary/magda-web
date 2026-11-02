@@ -3,6 +3,7 @@ export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
 ---
 <Layout title="Interdisciplinarist" description="Liderança, psicologia, pensamento sistêmico, inteligência intercultural — as perguntas que mais importam vivem na interseção. Um espaço para o pensamento que as conecta." lang="pt">
   <Header slot="header" />
@@ -105,14 +106,14 @@ import Footer from '../../components/Footer.astro';
   </section>
 
   <!-- NEWSLETTER -->
-  <section class="bg-teal">
+  <section id="newsletter" class="bg-teal">
     <div class="newsletter-inner max-w-[68rem] mx-auto px-8">
       <div>
         <h2 class="font-serif text-[2rem] font-light text-white mb-2">Pensamento interdisciplinar na sua caixa de entrada.</h2>
         <p class="text-[0.95rem] leading-[1.6] max-w-[38rem]" style="color: rgba(255,255,255,0.75)">Ensaios, workbooks e ferramentas para líderes que se recusam a ficar em uma só faixa — algumas vezes por mês.</p>
       </div>
       <div class="newsletter-embed">
-        <a href="https://interdisciplinarist.substack.com/subscribe" class="btn-subscribe">Inscrever-se</a>
+        <NewsletterForm lang="pt" />
       </div>
     </div>
   </section>

@@ -3,6 +3,7 @@ export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
 ---
 <Layout title="Interdisciplinarist" description="Leadership, psychology, systems thinking, intercultural intelligence — the questions that matter most live at the intersection. A space for the thinking that connects them." lang="en">
   <Header slot="header" />
@@ -78,14 +79,14 @@ import Footer from '../../components/Footer.astro';
   </section>
 
   <!-- NEWSLETTER -->
-  <section class="bg-teal">
+  <section id="newsletter" class="bg-teal">
     <div class="newsletter-inner max-w-[68rem] mx-auto px-8">
       <div>
         <h2 class="font-serif text-[2rem] font-light text-white mb-2">Thinking across disciplines, in your inbox.</h2>
         <p class="text-[0.95rem] leading-[1.6] max-w-[38rem]" style="color: rgba(255,255,255,0.75)">Essays, workbooks, and tools for leaders who refuse to stay in one lane — a few times a month.</p>
       </div>
       <div class="newsletter-embed">
-        <a href="https://interdisciplinarist.substack.com/subscribe" class="btn-subscribe">Subscribe</a>
+        <NewsletterForm lang="en" />
       </div>
     </div>
   </section>
@@ -241,7 +242,8 @@ import Footer from '../../components/Footer.astro';
     flex-wrap: wrap;
   }
   .newsletter-embed {
-    flex-shrink: 0;
+    flex: 1 1 22rem;
+    max-width: 32rem;
   }
   .btn-subscribe {
     display: inline-block;

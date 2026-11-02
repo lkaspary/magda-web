@@ -3,6 +3,7 @@ export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
 ---
 <Layout title="Contact | Interdisciplinarist" description="Get in touch — whether you want to discuss an idea, collaborate on a project, or just say hello." lang="en">
   <Header slot="header" />
@@ -37,31 +38,9 @@ import Footer from '../../components/Footer.astro';
 
     <!-- RIGHT: form -->
     <div>
-      <div id="form-status"></div>
-      <form id="contact-form" class="contact-form">
-        <div class="form-group">
-          <label>Your name</label>
-          <input type="text" name="name" autocomplete="name" required />
-        </div>
-        <div class="form-group">
-          <label>Your email</label>
-          <input type="email" name="email" autocomplete="email" required />
-        </div>
-        <div class="form-group">
-          <label>What's this about?</label>
-          <select name="topic" required>
-            <option value="">Select one…</option>
-            <option value="general">General</option>
-            <option value="collaboration">Collaboration</option>
-            <option value="content">Content idea</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Your message</label>
-          <textarea name="message" required></textarea>
-        </div>
-        <button type="submit" class="btn-submit">Send message</button>
-      </form>
+      <div class="contact-label">Newsletter</div>
+      <p class="text-[0.95rem] text-ink-muted leading-[1.7] mb-4">Essays, workbooks and tools, a few times a month.</p>
+      <NewsletterForm lang="en" />
     </div>
   </div>
 
@@ -165,42 +144,3 @@ import Footer from '../../components/Footer.astro';
   }
 </style>
 
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const statusEl = document.getElementById('form-status');
-  if (form && statusEl) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
-      statusEl.textContent = '';
-      statusEl.className = '';
-
-      const payload = {
-        name: (form.querySelector('[name="name"]') as HTMLInputElement).value.trim(),
-        email: (form.querySelector('[name="email"]') as HTMLInputElement).value.trim(),
-        topic: (form.querySelector('[name="topic"]') as HTMLSelectElement).value,
-        message: (form.querySelector('[name="message"]') as HTMLTextAreaElement).value.trim(),
-      };
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error ?? 'Unknown error');
-        form.style.display = 'none';
-        statusEl.className = 'success';
-        statusEl.textContent = "Thank you! I'll get back to you personally within a few business days.";
-      } catch (err) {
-        statusEl.className = 'error';
-        statusEl.textContent = 'Something went wrong. Please try again or email me directly.';
-        btn.textContent = 'Send message';
-        btn.disabled = false;
-      }
-    });
-  }
-</script>

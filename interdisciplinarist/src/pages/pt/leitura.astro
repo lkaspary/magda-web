@@ -3,6 +3,7 @@ export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
 ---
 <Layout title="Leitura | Interdisciplinarist" description="Ensaios, workbooks e ferramentas na interseção de liderança, psicologia, pensamento sistêmico e inteligência intercultural." lang="pt">
   <Header slot="header" />
@@ -98,7 +99,7 @@ import Footer from '../../components/Footer.astro';
     <div class="max-w-[68rem] mx-auto px-8 py-16 text-center">
       <h2 class="font-serif text-[1.8rem] font-light text-white mb-3">Não perca o que vem a seguir.</h2>
       <p class="text-[0.95rem] mb-6 mx-auto max-w-[32rem]" style="color: rgba(255,255,255,0.75)">Novos ensaios e workbooks na sua caixa de entrada — algumas vezes por mês.</p>
-      <a href="https://interdisciplinarist.substack.com/subscribe" class="btn-subscribe">Inscrever-se</a>
+      <div class="mx-auto" style="max-width:32rem"><NewsletterForm lang="pt" /></div>
     </div>
   </section>
 
